@@ -7,13 +7,16 @@
 
 class Map;
 
+typedef enum{ROOM,NPC,BLANK}TILETYPE;
+typedef enum{UP,DOWN,LEFT,RIGHT}DIRECTION;
+
 class Tile:public QLabel{
 private:
     TILETYPE type;
     Map* map;
 
 public:
-    Tile(Map* _parent,TILETYPE _type):parent(_parent),type(_type){};
+    Tile(Map* _parent,TILETYPE _type);
     virtual void draw();
     void gettype();
     bool canpass();
@@ -25,7 +28,7 @@ private:
     bool closed;
     unsigned roomnum;
 public:
-    Room(Map* parent,DIRECTION _dir,unsigned roomnum):Tile(parent,ROOM),dir(_dir),roomnum(_roomnum){};
+    Room(Map* parent,DIRECTION _dir,unsigned roomnum);
     void draw();
     void canopen();
     unsigned getroomnum();

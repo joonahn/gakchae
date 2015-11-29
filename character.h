@@ -13,37 +13,35 @@ class Map;
 
 class Character:public QLabel{
 protected:
-    float velocity;
+    int velocity;
     Map* map;
     Tile* tile;
     int x,y;
+    DIRECTION movingdir;
 
 public:
     Character();
-    Character(QWidget* parent,Map* _map);
+    Character(QWidget* parent,Map* _map,int _velocity);
     void set_tile();
     Tile* get_tile();
     int getx();
     int gety();
-
-signals:
-    QLabel* conflicted();
+    bool changedir(DIRECTION _dir);
 
 public slots:
-    void move_left();
-    void move_up();
-    void move_down();
-    void move_right();
+    void move();
 };
 
 class Saejunwi:public Character{
 signals:
     bool seeked;
 public:
+    Saejunwi(int _x,int _y);
     void setseeked();
-public slots:
     void follow();
     void dopattern();
-}
+signals:
+    bool catched();
+};
 
 #endif // CHARACTER_H
