@@ -4,6 +4,11 @@
 #include <QLabel>
 #include <QWidget>
 #include "character.h"
+#include "tile.h"
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+
+#define JUNWI_NUM 6
 
 class Tile;
 
@@ -15,11 +20,13 @@ class Map : public QWidget
 {
 private:
     Character * me;
-    Saejunwi * junwis[6];
+    Saejunwi * junwis[JUNWI_NUM];
     Tile * mapData[][];
+    Ui::MainWindow * mainwindow;
 public:
-    Map(stage _stage);
+    Map(Ui::MainWindow * _mainwindow);
     Character * getCharacter();
+    Tile * getTile(int x, int y);
     void placeObject();
 };
 

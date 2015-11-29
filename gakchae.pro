@@ -15,7 +15,8 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     character.cpp \
-    tile.cpp
+    tile.cpp \
+    map.cpp
 
 HEADERS  += mainwindow.h \
     tile.h \
