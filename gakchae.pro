@@ -20,6 +20,7 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     tile.h \
     character.h \
-    map.h
+    map.h \
+    mapdata.h
 
 FORMS    += mainwindow.ui

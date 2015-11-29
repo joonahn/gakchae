@@ -3,20 +3,24 @@
 
 #include <QLabel>
 #include <QWidget>
+#include "character.h"
 
 class Tile;
+
+
+
+enum stage{RC_STAGE1, RC_STAGE2, HYOJA_MARKET};
 
 class Map : public QWidget
 {
 private:
-    int posX, posY;
+    Character * me;
+    Saejunwi * junwis[6];
     Tile * mapData[][];
 public:
-    Map(int position);
-    bool move_left();
-    bool move_right();
-    bool move_up();\
-    bool move_down();
+    Map(stage _stage);
+    Character * getCharacter();
+    void placeObject();
 };
 
 #endif // MAP_H
