@@ -19,6 +19,7 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     tile.h \
-    character.h
+    character.h \
+    map.h
 
 FORMS    += mainwindow.ui
