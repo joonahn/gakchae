@@ -8,7 +8,7 @@
 class Map;
 
 typedef enum{ROOM,NPC,BLANK}TILETYPE;
-typedef enum{UP,DOWN,LEFT,RIGHT}DIRECTION;
+typedef enum{UP,DOWN,LEFT,RIGHT,NONE}DIRECTION;
 
 class Tile:public QLabel{
 private:
