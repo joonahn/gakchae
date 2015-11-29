@@ -8,39 +8,31 @@
 #include<QPixmap>
 #include<QLabel>
 #include"tile.h"
-
-class Map;
+#include"map.h"
 
 class Character:public QLabel{
 protected:
     int velocity;
     Map* map;
-    Tile* tile;
     int x,y;
     DIRECTION movingdir;
 
 public:
-    Character();
-    Character(QWidget* parent,Map* _map,int _velocity);
-    void set_tile();
-    Tile* get_tile();
+    Character(QWidget* parent,Map* _map,int _velocity,int _x,int _y);
     int getx();
     int gety();
+    bool conflicted();
     bool changedir(DIRECTION _dir);
-
-public slots:
     void move();
 };
 
 class Saejunwi:public Character{
-signals:
-    bool seeked;
 public:
-    Saejunwi(int _x,int _y);
-    void setseeked();
+    Saejunwi(QWidget* parent,Map* _map,int _x,int _y);
     void follow();
     void dopattern();
 signals:
+    bool seeked();
     bool catched();
 };
 
