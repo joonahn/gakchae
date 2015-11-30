@@ -14,12 +14,17 @@ class Tile:public QLabel{
 private:
     TILETYPE type;
     Map* map;
-
+    int x,y;
 public:
-    Tile(Map* _parent,TILETYPE _type);
-    virtual void draw();
+    Tile(Map* _parent,TILETYPE _type,int _x,int _y);
     void gettype();
     bool canpass();
+    Tile* getDownTile();
+    Tile* getUpTile();
+    Tile* getLeftTile();
+    Tile* getRightTile();
+    int getx();
+    int gety();
 };
 
 class Room:public Tile{
