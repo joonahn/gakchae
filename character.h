@@ -26,13 +26,12 @@ public:
     void move();
 };
 
-class Saejunwi:public Character{
+class SJW:public Character{
 public:
-    Saejunwi(QWidget* parent,Map* _map,int _x,int _y);
-    void follow();
-    void dopattern();
+    SJW(QWidget* parent,Map* _map,int _x,int _y);
+    void moveSJW();
 signals:
-    bool seeked();
+    DIRECTION seeked();
     bool catched();
 };
 
