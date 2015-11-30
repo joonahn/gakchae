@@ -1,9 +1,9 @@
 #include "character.h"
 
 
-Character::Character(QWidget *parent, Map *_map,int _velocity,int _x,int _y):QLabel(parent),map(_map),velocity(_velocity){
-    this->setGeometry(0,0,50,50);
-    this->setPixmap("saenaegi.jpg");
+Character::Character(QWidget *parent, Map *_map,int _velocity,int _x,int _y):QLabel(parent),map(_map),velocity(_velocity),x(_x),y(_y){
+    QPixmap pixmap(":/images/asdfasdf.png");
+    this->setPixmap(pixmap);
 }
 
 int Character::getx(){
@@ -15,8 +15,8 @@ int Character::gety(){
 }
 
 bool Character::conflicted(){
-    if(x%50==25&&y%50==25)
-        return true;
+    if(x%50!=0||y%50!=0)
+        return false;
     switch(movinigdir){
     UP:
         return y/50==0||map->getTile(x/50,y/50-1)->canpass();
@@ -25,7 +25,7 @@ bool Character::conflicted(){
     LEFT:
         return x/50==0||map->getTile(x/50-1,y/50)->canpass();
     RIGHT:
-        return x/50==99||map->getTile(x/50+1,y/50)->canpass();
+        return x/50==69||map->getTile(x/50+1,y/50)->canpass();
     NONE:
         return true;
     }
@@ -37,7 +37,7 @@ bool Character::changedir(DIRECTION _dir){
 }
 
 void Character::move(){
-    if(x%50!=25||y%50!=25||!conflicted()){
+    if(x%50!=0||y%50!=0||!conflicted()){
         switch(movingdir){
         UP:
             y-=velocity;
@@ -124,4 +124,8 @@ DIRECTION SJW::seeked(){
             }
     }
     return NONE;
+}
+
+bool SJW::catched(){
+    return x/50==map->getCharacter()->x()/50&&y/50==map->getCharacter()->y()/50;
 }
