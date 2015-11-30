@@ -4,19 +4,18 @@
 #include<iostream>
 #include<QLabel>
 #include<QWidget>
+#include"map.h"
+#include"mapdata.h"
 
-class Map;
-
-typedef enum{ROOM,NPC,BLANK}TILETYPE;
 typedef enum{UP,DOWN,LEFT,RIGHT,NONE}DIRECTION;
 
 class Tile:public QLabel{
 private:
-    TILETYPE type;
+    TileType type;
     Map* map;
     int x,y;
 public:
-    Tile(Map* _parent,TILETYPE _type,int _x,int _y);
+    Tile(Map* _parent,TileType _type,int _x,int _y);
     void gettype();
     bool canpass();
     Tile* getDownTile();
