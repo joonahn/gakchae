@@ -17,7 +17,7 @@ int Character::gety(){
 bool Character::conflicted(){
     if(x%50!=0||y%50!=0)
         return false;
-    switch(movinigdir){
+    switch(movingdir){
     UP:
         return y/50==0||map->getTile(x/50,y/50-1)->canpass();
     DOWN:
@@ -41,18 +41,18 @@ void Character::move(){
         switch(movingdir){
         UP:
             y-=velocity;
-            if((25-y)%50<velocity)
-                y+=(25-y)%50;
+            if(50-(y%50)<velocity)
+                y+=50-(y%50);
             break;
         DOWN:
             y+=velocity;
-            if((25+y)%50<velocity)
-                y-=(25+y)%50;
+            if(y%50<velocity)
+                y-=y%50;
             break;
         LEFT:
             x-=velocity;
-            if((25-x)%50<velocity)
-                x+=(25-x)%50;
+            if(50-(x%50)<velocity)
+                x+=50-(x%50);
             break;
         RIGHT:
             x+=velocity;
@@ -65,7 +65,7 @@ void Character::move(){
         movingdir=NONE;
 }
 
-SJW::SJW(QWidget* parent,Map* _map,int _x,int _y):Character(parent,_map,2,_x,_y),seeked(false){
+SJW::SJW(QWidget* parent,Map* _map,int _x,int _y,DIRECTION _dir):Character(parent,_map,2,_x,_y),movingdir(_dir){
 }
 
 void SJW::moveSJW(){
@@ -92,8 +92,9 @@ void SJW::moveSJW(){
 }
 
 DIRECTION SJW::seeked(){
-    Tile* tmp=map->getTile(x/50,y/50),charTile=map->getTile(map->getCharacter()->x()/50,map->getCharacter()->y()/50);
-    if(x%50!=25||y%50!=25)
+    Tile* tmp=map->getTile(x/50,y/50);
+    Tile* charTile=map->getTile(map->getCharacter()->x()/50,map->getCharacter()->y()/50);
+    if(x%50!=0||y%50!=0)
         return NONE;
     if(tmp->getx()==charTile->getx()){
         if(tmp->gety()<charTile->gety())
@@ -127,5 +128,7 @@ DIRECTION SJW::seeked(){
 }
 
 bool SJW::catched(){
-    return x/50==map->getCharacter()->x()/50&&y/50==map->getCharacter()->y()/50;
+    return (x+25)/50==(map->getCharacter()->x()+25)/50&&(y+25)/50==(map->getCharacter()->y()+25)/50;
 }
+
+
