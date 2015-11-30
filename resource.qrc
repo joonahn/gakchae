@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>pot1.png</file>
+        <file>pot2.png</file>
+        <file>rup.png</file>
+        <file>rfill.png</file>
+        <file>rright.png</file>
+        <file>rdown.png</file>
+        <file>rleft.png</file>
+        <file>floor.png</file>
+        <file>saenaegi.png</file>
+        <file>gamestartbutton.png</file>
+        <file>howto_button.png</file>
+        <file>start_window.png</file>
+    </qresource>
+</RCC>

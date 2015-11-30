@@ -25,3 +25,6 @@ HEADERS  += mainwindow.h \
     mapdata.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    resource.qrc
