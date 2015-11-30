@@ -8,8 +8,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#define JUNWI_NUM 6
-
 class Tile;
 
 
@@ -20,8 +18,8 @@ class Map : public QWidget
 {
 private:
     Character * me;
-    Saejunwi * junwis[JUNWI_NUM];
-    Tile * mapData[][];
+    Saejunwi * junwis[6];
+    Tile * mapData[20][70];
     Ui::MainWindow * mainwindow;
 public:
     Map(Ui::MainWindow * _mainwindow);
