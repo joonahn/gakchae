@@ -39,7 +39,7 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
         }
 
     //in pixel coordination
-    me = new Character(this,this,3,350,750);
+    me = new Character(this,this,5,350,750);
 
     //Initial Junwi Position Needed, in pixel coordination
     junwis[0] = new SJW(this, this, 350,150,DOWN);
@@ -50,6 +50,10 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     junwis[5] = new SJW(this, this, 3050,200, RIGHT);
 
     placeObject();
+    timer=new QTimer(this);
+    connect(timer,SIGNAL(timeout()),this,SLOT(moveall()));
+    timer->start(1000);
+    connect(me,SIGNAL(catched()),this,SLOT(reset()));
 }
 
 Character *Map::getCharacter()
@@ -79,30 +83,39 @@ void Map::placeObject()
     }
 
 }
-
-/*add more implementation here*/
-//This function gets keboard input
-void Map::keyboardInput(QKeyEvent * event)
+SJW *Map::getJunwi(int index)
 {
-    QRect rct;
-    switch(event->key())
-    {
-    case Qt::Key_Up:
-        me->changedir(UP);
-        me->move();
-        break;
-    case Qt::Key_Down:
-        me->changedir(DOWN);
-        break;
-    case Qt::Key_Left:
-        me->changedir(LEFT);
-        break;
-    case Qt::Key_Right:
-        me->changedir(RIGHT);
-        break;
-    default:
-        event->ignore();
-        break;
-    }
+    return junwis[index];
 }
 
+void Map::moveall()
+{
+    for(int i=0;i<6;i++)
+        junwis[i]->move();
+    me->move();
+}
+
+void Map::reset()
+{
+    me->setx(750);
+    me->sety(350);
+    me->changedir(NONE);
+    junwis[0]->setx(150);
+    junwis[0]->sety(350);
+    junwis[0]->changedir(DOWN);
+    junwis[1]->setx(350);
+    junwis[1]->sety(2950);
+    junwis[1]->changedir(DOWN);
+    junwis[2]->setx(800);
+    junwis[2]->sety(1250);
+    junwis[2]->changedir(LEFT);
+    junwis[3]->setx(300);
+    junwis[3]->sety(1300);
+    junwis[3]->changedir(RIGHT);
+    junwis[4]->setx(300);
+    junwis[4]->sety(1850);
+    junwis[4]->changedir(UP);
+    junwis[5]->setx(200);
+    junwis[5]->sety(3050);
+    junwis[5]->changedir(RIGHT);
+}

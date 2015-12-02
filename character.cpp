@@ -2,7 +2,7 @@
 #include "map.h"
 
 
-Character::Character(QWidget *parent, Map *_map,int _velocity,int _y,int _x):QLabel(parent),map(_map),velocity(_velocity),x(_x),y(_y){
+Character::Character(QWidget *parent, Map *_map,int _velocity,int _y,int _x):QLabel(parent),map(_map),velocity(_velocity),x(_x),y(_y),movingdir(NONE){
     QPixmap pixmap(":/images/saenaegi.png");
     this->setPixmap(pixmap);
 }
@@ -14,6 +14,7 @@ int Character::getx(){
 int Character::gety(){
     return y;
 }
+
 
 bool Character::conflicted(){
     if(x%50!=0||y%50!=0)
@@ -39,34 +40,57 @@ void Character::changedir(DIRECTION _dir){
 }
 
 void Character::move(){
+    SJW* junwi;
     if(x%50!=0||y%50!=0||!conflicted())
         switch(movingdir){
         case UP:
             y-=velocity;
-            if(50-(y%50)<velocity)
+            if(50-(y%50)<velocity){
                 y+=50-(y%50);
+                movingdir=NONE;
+            }
             break;
         case DOWN:
             y+=velocity;
-            if(y%50<velocity)
+            if(y%50<velocity){
                 y-=y%50;
+                movingdir=NONE;
+            }
             break;
         case LEFT:
             x-=velocity;
-            if(50-(x%50)<velocity)
+            if(50-(x%50)<velocity){
                 x+=50-(x%50);
+                movingdir=NONE;
+            }
             break;
         case RIGHT:
             x+=velocity;
-            if((25+x)%50<velocity)
+            if((25+x)%50<velocity){
                 x-=(25+x)%50;
+                movingdir=NONE;
+            }
             break;
         }
-    else
-        movingdir=NONE;
+    for(int i=0;i<6;i++){
+        junwi=map->getJunwi(i);
+        if((x+25)/50==(junwi->getx()+25)/50&&(y+25)/50==(junwi->gety()+25)/50){
+            emit catched();
+            break;
+        }
+    }
 }
 
-SJW::SJW(QWidget* parent,Map* _map,int _x,int _y,DIRECTION _dir):Character(parent,_map,2,_x,_y){
+void Character::setx(int _x){
+    x=_x;
+}
+
+void Character::sety(int _y)
+{
+    y=_y;
+}
+
+SJW::SJW(QWidget* parent,Map* _map,int _x,int _y,DIRECTION _dir):Character(parent,_map,3,_x,_y){
     changedir(_dir);
 }
 
@@ -127,10 +151,6 @@ DIRECTION SJW::seeked(){
             }
     }
     return NONE;
-}
-
-bool SJW::catched(){
-    return (getx()+25)/50==(map->getCharacter()->getx()+25)/50&&(gety()+25)/50==(map->getCharacter()->gety()+25)/50;
 }
 
 
