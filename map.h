@@ -3,6 +3,7 @@
 
 #include <QLabel>
 #include <QWidget>
+#include <QTimer>
 #include "character.h"
 #include "tile.h"
 #include "mainwindow.h"
@@ -20,11 +21,17 @@ private:
     SJW * junwis[6];
     Tile * mapData[20][70];
     Ui::MainWindow * mainwindow;
+    QTimer * timer;
 public:
     Map(QMainWindow * _mainwindow,QWidget *parent);
     Character * getCharacter();
     Tile * getTile(int x, int y);
     void placeObject();
+    SJW * getJunwi(int index);
+public slots:
+    void moveall();
+    void reset();
+signals:
 };
 
 #endif // MAP_H

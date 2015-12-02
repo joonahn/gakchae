@@ -25,15 +25,18 @@ public:
     bool conflicted();
     void changedir(DIRECTION _dir);
     void move();
+    void setx(int _x);
+    void sety(int _y);
+signals:
+    void catched(){}
 };
 
 class SJW:public Character{
 public:
     SJW(QWidget* parent,Map* _map,int _x,int _y,DIRECTION _dir);
     void moveSJW();
-signals:
+private:
     DIRECTION seeked();
-    bool catched();
 };
 
 #endif // CHARACTER_H
