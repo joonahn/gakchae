@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     map = new Map(this,parent);
     this->setCentralWidget(map);
+    this->setFixedSize(740,515);
 }
 
 MainWindow::~MainWindow()

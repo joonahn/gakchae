@@ -21,7 +21,7 @@ int rc1_mapdata[20][70] = {
     { 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 7, 7, 7, 7, 7, 3, 4, 4, 4, 4, 4, 4, 4, 2, 0, 7, 7, 7, 7, 7, 7, 7, 7, },
     { 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, },
     { 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, }
-    };
+};
 
 int rc2_mapdata[100][100]={rfloor};
 
@@ -30,8 +30,16 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     //Initialize & Load RC1 stage
     mainwindow = dynamic_cast<Ui::MainWindow*>(_mainwindow);
 
+    //Initialize Tiles
+    for(int i = 0;i<20;i++)
+        for(int j = 0;j<70;j++)
+        {
+            /*j is X axis coordination, i is j axis coordination */
+            mapData[i][j] = new Tile(this,this, static_cast<TileType>(rc1_mapdata[i][j]), i, j);
+        }
+
     //in pixel coordination
-    me = new Character(this, this, 350, 750, 0);
+    me = new Character(this,this,3,350,750);
 
     //Initial Junwi Position Needed, in pixel coordination
     junwis[0] = new SJW(this, this, 350,150,DOWN);
@@ -41,13 +49,7 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     junwis[4] = new SJW(this, this, 1850,300, UP);
     junwis[5] = new SJW(this, this, 3050,200, RIGHT);
 
-    //Initialize Tiles
-    for(int i = 0;i<20;i++)
-        for(int j = 0;j<70;j++)
-        {
-            /*j is X axis coordination, i is j axis coordination */
-            mapData[i][j] = new Tile(this,this, static_cast<TileType>(rc1_mapdata[i][j]), i, j);
-        }
+    placeObject();
 }
 
 Character *Map::getCharacter()
@@ -66,13 +68,13 @@ void Map::placeObject()
     for(int i = 0;i<20;i++)
         for(int j = 0;j<70;j++)
         {
-            mapData[i][j]->setGeometry(mapData[i][j]->getx()*50 - me->getx() + ((740-50/2)),
-                                       mapData[i][j]->gety()*50 - me->gety() + ((515-50)/2), 50, 50);
+            mapData[i][j]->setGeometry(j*50 - me->gety() + ((740-50)/2),
+                                       i*50 - me->getx() + ((515-50)/2), 50, 50);
         }
     for(int i = 0;i<6;i++)
     {
-        junwis[i]->setGeometry(junwis[i]->getx()*50 - me->getx() + ((740-50/2)),
-                               junwis[i]->gety()*50 - me->gety() + ((515-50)/2), 50, 50);
+        junwis[i]->setGeometry(junwis[i]->gety() - me->gety() + ((740-50)/2),
+                               junwis[i]->getx() - me->getx() + ((515-50)/2), 50, 50);
     }
 
 }

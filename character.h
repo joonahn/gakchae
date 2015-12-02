@@ -19,7 +19,7 @@ protected:
     DIRECTION movingdir;
 
 public:
-    Character(QWidget* parent,Map* _map,int _velocity,int _x,int _y);
+    Character(QWidget* parent,Map* _map,int _velocity,int _y,int _x);
     int getx();
     int gety();
     bool conflicted();

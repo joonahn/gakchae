@@ -32,6 +32,8 @@ Tile::Tile(QWidget* parent,Map* _map,TileType _type,int _x,int _y):QLabel(parent
         pixmap=new QPixmap(":/images/rfill.png"); //need to be changed
         break;
     }
+    this->setPixmap(*pixmap);
+    delete pixmap;
 }
 
 TileType Tile::gettype(){

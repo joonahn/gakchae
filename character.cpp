@@ -2,7 +2,7 @@
 #include "map.h"
 
 
-Character::Character(QWidget *parent, Map *_map,int _velocity,int _x,int _y):QLabel(parent),map(_map),velocity(_velocity),x(_x),y(_y){
+Character::Character(QWidget *parent, Map *_map,int _velocity,int _y,int _x):QLabel(parent),map(_map),velocity(_velocity),x(_x),y(_y){
     QPixmap pixmap(":/images/saenaegi.png");
     this->setPixmap(pixmap);
 }
