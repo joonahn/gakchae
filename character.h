@@ -12,6 +12,7 @@
 class Map;
 
 class Character:public QLabel{
+Q_OBJECT
 protected:
     int velocity;
     Map* map;
@@ -27,8 +28,9 @@ public:
     void move();
     void setx(int _x);
     void sety(int _y);
+    void check();
 signals:
-    void catched(){}
+    void catched();
 };
 
 class SJW:public Character{

@@ -16,6 +16,7 @@ enum stage{RC_STAGE1, RC_STAGE2, HYOJA_MARKET};
 
 class Map : public QWidget
 {
+Q_OBJECT
 private:
     Character * me;
     SJW * junwis[6];

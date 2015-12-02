@@ -21,13 +21,13 @@ bool Character::conflicted(){
         return false;
     switch(movingdir){
     case UP:
-        return y/50==0||map->getTile(x/50,y/50-1)->canpass();
+        return x/50==0||!map->getTile(y/50,x/50-1)->canpass();
     case DOWN:
-        return y/50==19||map->getTile(x/50,y/50+1)->canpass();
+        return x/50==19||!map->getTile(y/50,x/50+1)->canpass();
     case LEFT:
-        return x/50==0||map->getTile(x/50-1,y/50)->canpass();
+        return y/50==0||!map->getTile(y/50-1,x/50)->canpass();
     case RIGHT:
-        return x/50==69||map->getTile(x/50+1,y/50)->canpass();
+        return y/50==69||!map->getTile(y/50+1,x/50)->canpass();
     case NONE:
         return true;
     }
@@ -40,7 +40,6 @@ void Character::changedir(DIRECTION _dir){
 }
 
 void Character::move(){
-    SJW* junwi;
     if(x%50!=0||y%50!=0||!conflicted())
         switch(movingdir){
         case UP:
@@ -72,13 +71,6 @@ void Character::move(){
             }
             break;
         }
-    for(int i=0;i<6;i++){
-        junwi=map->getJunwi(i);
-        if((x+25)/50==(junwi->getx()+25)/50&&(y+25)/50==(junwi->gety()+25)/50){
-            emit catched();
-            break;
-        }
-    }
 }
 
 void Character::setx(int _x){
@@ -88,6 +80,18 @@ void Character::setx(int _x){
 void Character::sety(int _y)
 {
     y=_y;
+}
+
+void Character::check()
+{
+    SJW* junwi;
+    for(int i=0;i<6;i++){
+        junwi=map->getJunwi(i);
+        if(((x+25)/50==(junwi->getx()+25)/50&&(y+25)/50)==((junwi->gety()+25)/50)){
+            emit catched();
+            break;
+        }
+    }
 }
 
 SJW::SJW(QWidget* parent,Map* _map,int _x,int _y,DIRECTION _dir):Character(parent,_map,3,_x,_y){

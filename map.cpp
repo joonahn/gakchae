@@ -52,7 +52,7 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     placeObject();
     timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(moveall()));
-    timer->start(1000);
+    timer->start(50);
     connect(me,SIGNAL(catched()),this,SLOT(reset()));
 }
 
@@ -93,6 +93,7 @@ void Map::moveall()
     for(int i=0;i<6;i++)
         junwis[i]->move();
     me->move();
+    me->check();
 }
 
 void Map::reset()
