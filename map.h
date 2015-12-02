@@ -8,10 +8,8 @@
 #include "tile.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "mapdata.h"
 
-class Tile;
-class Character;
-class SJW;
 
 
 enum stage{RC_STAGE1, RC_STAGE2, HYOJA_MARKET};
@@ -24,7 +22,7 @@ private:
     Tile * mapData[20][70];
     Ui::MainWindow * mainwindow;
 public:
-    Map(QMainWindow * _mainwindow);
+    Map(QMainWindow * _mainwindow,QWidget *parent);
     Character * getCharacter();
     Tile * getTile(int x, int y);
     void placeObject();

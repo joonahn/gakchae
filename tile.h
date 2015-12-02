@@ -4,8 +4,9 @@
 #include<iostream>
 #include<QLabel>
 #include<QWidget>
-#include"map.h"
 #include"mapdata.h"
+
+class Map;
 
 typedef enum{UP,DOWN,LEFT,RIGHT,NONE}DIRECTION;
 
@@ -15,8 +16,8 @@ private:
     Map* map;
     int x,y;
 public:
-    Tile(Map* _parent,TileType _type,int _x,int _y);
-    void gettype();
+    Tile(QWidget* parent,Map* _map,TileType _type,int _x,int _y);
+    TileType gettype();
     bool canpass();
     Tile* getDownTile();
     Tile* getUpTile();
@@ -26,21 +27,7 @@ public:
     int gety();
 };
 
-class Room:public Tile{
-private:
-    DIRECTION dir;
-    bool closed;
-    unsigned roomnum;
-public:
-    Room(Map* parent,DIRECTION _dir,unsigned roomnum);
-    void draw();
-    void canopen();
-    unsigned getroomnum();
-};
 
-class NPC:public Tile{
-private:
-};
 
 #endif // TILE
 
