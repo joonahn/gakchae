@@ -1,10 +1,9 @@
 #include "map.h"
-#include "mapdata.h"
 
-Map::Map(MainWindow *_mainwindow)
+Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
 {
     //Initialize & Load RC1 stage
-    mainwindow = _mainwindow;
+    mainwindow = dynamic_cast<Ui::MainWindow*>(_mainwindow);
 
     //in pixel coordination
     me = new Character(this, this, 350, 750, 0);
@@ -19,10 +18,10 @@ Map::Map(MainWindow *_mainwindow)
 
     //Initialize Tiles
     for(int i = 0;i<20;i++)
-        for(int j = 0;j<100;j++)
+        for(int j = 0;j<70;j++)
         {
             /*j is X axis coordination, i is j axis coordination */
-            mapData[i][j] = new Tile(this, rc1_mapdata[i][j], i, j);
+            mapData[i][j] = new Tile(this,this, static_cast<TileType>(rc1_mapdata[i][j]), i, j);
         }
 }
 
@@ -40,7 +39,7 @@ void Map::placeObject()
 {
     me->setGeometry((740-50)/2, (515-50)/2, 50, 50);
     for(int i = 0;i<20;i++)
-        for(int j = 0;J,100;j++)
+        for(int j = 0;j<70;j++)
         {
             mapData[i][j]->setGeometry(mapData[i][j]->getx()*50 - me->getx() + ((740-50/2)),
                                        mapData[i][j]->gety()*50 - me->gety() + ((515-50)/2), 50, 50);
@@ -52,4 +51,3 @@ void Map::placeObject()
     }
 
 }
-

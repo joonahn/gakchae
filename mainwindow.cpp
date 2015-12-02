@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    map = new Map(this);
+    map = new Map(this,parent);
     this->setCentralWidget(map);
 }
 

@@ -8,7 +8,8 @@
 #include<QPixmap>
 #include<QLabel>
 #include"tile.h"
-#include"map.h"
+
+class Map;
 
 class Character:public QLabel{
 protected:
@@ -22,7 +23,7 @@ public:
     int getx();
     int gety();
     bool conflicted();
-    bool changedir(DIRECTION _dir);
+    void changedir(DIRECTION _dir);
     void move();
 };
 
