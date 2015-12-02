@@ -36,6 +36,7 @@ Tile *Map::getTile(int x, int y)
     return mapData[y][x];
 }
 
+//This function places map tiles, my character, saejunwis
 void Map::placeObject()
 {
     me->setGeometry((740-50)/2, (515-50)/2, 50, 50);
@@ -51,5 +52,31 @@ void Map::placeObject()
                                junwis[i]->gety()*50 - me->gety() + ((515-50)/2), 50, 50);
     }
 
+}
+
+/*add more implementation here*/
+//This function gets keboard input
+void Map::keyboardInput(QKeyEvent * event)
+{
+    QRect rct;
+    switch(event->key())
+    {
+    case Qt::Key_Up:
+        me->changedir(UP);
+        me->move();
+        break;
+    case Qt::Key_Down:
+        me->changedir(DOWN);
+        break;
+    case Qt::Key_Left:
+        me->changedir(LEFT);
+        break;
+    case Qt::Key_Right:
+        me->changedir(RIGHT);
+        break;
+    default:
+        event->ignore();
+        break;
+    }
 }
 

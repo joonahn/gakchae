@@ -3,6 +3,7 @@
 
 #include <QLabel>
 #include <QWidget>
+#include <QKeyEvent>
 #include "character.h"
 #include "tile.h"
 #include "mainwindow.h"
@@ -27,6 +28,7 @@ public:
     Character * getCharacter();
     Tile * getTile(int x, int y);
     void placeObject();
+    void keyboardInput(QKeyEvent * event);
 };
 
 #endif // MAP_H
