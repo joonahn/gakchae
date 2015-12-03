@@ -88,7 +88,7 @@ void Character::check()
     SJW* junwi;
     for(int i=0;i<6;i++){
         junwi=map->getJunwi(i);
-        if(((x+25)/50==(junwi->getx()+25)/50&&(y+25)/50)==((junwi->gety()+25)/50)){
+        if(((x+25)/50==(junwi->getx()+25)/50)&&((y+25)/50)==((junwi->gety()+25)/50)){
             emit catched();
             break;
         }
@@ -119,12 +119,38 @@ void SJW::moveSJW(){
             break;
         }
     }
-    move();
+    if(x%50!=0||y%50!=0||!conflicted())
+        switch(movingdir){
+        case UP:
+            y-=velocity;
+            if(-(50-y)%50<velocity){
+                y+=(50-y)%50;
+            }
+            break;
+        case DOWN:
+            y+=velocity;
+            if(y%50<velocity){
+                y-=y%50;
+            }
+            break;
+        case LEFT:
+            x-=velocity;
+            if(-(50-x)%50<velocity){
+                x+=(50-x)%50;
+            }
+            break;
+        case RIGHT:
+            x+=velocity;
+            if(x%50<velocity){
+                x-=x%50;
+            }
+            break;
+        }
 }
 
 DIRECTION SJW::seeked(){
     Tile* tmp=map->getTile(getx()/50,gety()/50);
-    Tile* charTile=map->getTile(map->getCharacter()->getx()/50,map->getCharacter()->gety()/50);
+    Tile* charTile=map->getTile((map->getCharacter()->getx()+25)/50,(map->getCharacter()->gety()+25)/50);
     if(getx()%50!=0||gety()%50!=0)
         return NONE;
     if(tmp->getx()==charTile->getx()){
