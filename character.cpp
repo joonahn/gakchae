@@ -21,13 +21,13 @@ bool Character::conflicted(){
         return false;
     switch(movingdir){
     case UP:
-        return x/50==0||!map->getTile(y/50,x/50-1)->canpass();
+        return y/50==0||!map->getTile(x/50,y/50-1)->canpass();
     case DOWN:
-        return x/50==19||!map->getTile(y/50,x/50+1)->canpass();
+        return y/50==19||!map->getTile(x/50,y/50+1)->canpass();
     case LEFT:
-        return y/50==0||!map->getTile(y/50-1,x/50)->canpass();
+        return x/50==0||!map->getTile(x/50-1,y/50)->canpass();
     case RIGHT:
-        return y/50==69||!map->getTile(y/50+1,x/50)->canpass();
+        return x/50==69||!map->getTile(x/50+1,y/50)->canpass();
     case NONE:
         return true;
     }
@@ -45,8 +45,8 @@ void Character::move(){
         switch(movingdir){
         case UP:
             y-=velocity;
-            if(50-(y%50)<velocity){
-                y+=50-(y%50);
+            if(-(50-y)%50<velocity){
+                y+=(50-y)%50;
                 movingdir=NONE;
             }
             break;
@@ -59,15 +59,15 @@ void Character::move(){
             break;
         case LEFT:
             x-=velocity;
-            if(50-(x%50)<velocity){
-                x+=50-(x%50);
+            if(-(50-x)%50<velocity){
+                x+=(50-x)%50;
                 movingdir=NONE;
             }
             break;
         case RIGHT:
             x+=velocity;
-            if((25+x)%50<velocity){
-                x-=(25+x)%50;
+            if(x%50<velocity){
+                x-=x%50;
                 movingdir=NONE;
             }
             break;
@@ -142,7 +142,7 @@ DIRECTION SJW::seeked(){
             }
     }
     else if(tmp->gety()==charTile->gety()){
-        if(tmp->getx()<charTile->gety())
+        if(tmp->getx()<charTile->getx())
             while(tmp->canpass()){
                 tmp=tmp->getRightTile();
                 if(tmp==charTile)
@@ -153,6 +153,8 @@ DIRECTION SJW::seeked(){
                 tmp=tmp->getLeftTile();
                 if(tmp==charTile)
                     return LEFT;
+                \
+
             }
     }
     return NONE;

@@ -115,7 +115,6 @@ SJW *Map::getJunwi(int index)
 
 void Map::keyboardInput(QKeyEvent *event)
 {
-    qDebug("KeyPressed");
     switch(event->key())
     {
     case Qt::Key_Left:
@@ -139,10 +138,10 @@ void Map::keyboardInput(QKeyEvent *event)
 
 void Map::moveall()
 {
-    qDebug("move!");
     for(int i=0;i<6;i++)
-        junwis[i]->move();
+        junwis[i]->moveSJW();
     me->move();
+    me->check();
     placeObject();
 }
 
