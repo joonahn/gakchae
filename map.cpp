@@ -57,7 +57,7 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
         for(int j = 0;j<70;j++)
         {
             /*j is X axis coordination, i is j axis coordination */
-            mapData[i][j] = new Tile(this,this, static_cast<TileType>(rc1_mapdata[i][j]), i, j);
+            mapData[i][j] = new Tile(this,this, static_cast<TileType>(rc1_mapdata[i][j]), j, i);
         }
 
     //in pixel coordination
@@ -147,25 +147,25 @@ void Map::moveall()
 
 void Map::reset()
 {
-    me->setx(750);
-    me->sety(350);
+    me->sety(750);
+    me->setx(350);
     me->changedir(NONE);
-    junwis[0]->setx(150);
-    junwis[0]->sety(350);
+    junwis[0]->sety(150);
+    junwis[0]->setx(350);
     junwis[0]->changedir(DOWN);
-    junwis[1]->setx(350);
-    junwis[1]->sety(2950);
+    junwis[1]->sety(350);
+    junwis[1]->setx(2950);
     junwis[1]->changedir(DOWN);
-    junwis[2]->setx(800);
-    junwis[2]->sety(1250);
+    junwis[2]->sety(800);
+    junwis[2]->setx(1250);
     junwis[2]->changedir(LEFT);
-    junwis[3]->setx(300);
-    junwis[3]->sety(1300);
+    junwis[3]->sety(300);
+    junwis[3]->setx(1300);
     junwis[3]->changedir(RIGHT);
-    junwis[4]->setx(300);
-    junwis[4]->sety(1850);
+    junwis[4]->sety(300);
+    junwis[4]->setx(1850);
     junwis[4]->changedir(UP);
-    junwis[5]->setx(200);
-    junwis[5]->sety(3050);
+    junwis[5]->sety(200);
+    junwis[5]->setx(3050);
     junwis[5]->changedir(RIGHT);
 }
