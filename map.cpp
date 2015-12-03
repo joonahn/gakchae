@@ -74,7 +74,7 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     placeObject();
     timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(moveall()));
-    timer->start(50);
+    timer->start(20);
     connect(me,SIGNAL(catched()),this,SLOT(reset()));
 }
 

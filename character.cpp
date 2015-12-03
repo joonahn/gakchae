@@ -100,8 +100,9 @@ SJW::SJW(QWidget* parent,Map* _map,int _x,int _y,DIRECTION _dir):Character(paren
 }
 
 void SJW::moveSJW(){
-    if(seeked()!=NONE){
-        changedir(seeked());
+    DIRECTION seek=seeked();
+    if(seek!=NONE&&getx()%50==0&&gety()%50==0){
+        changedir(seek);
     }
     else if(conflicted()){
         switch(Character::movingdir){
@@ -149,38 +150,49 @@ void SJW::moveSJW(){
 }
 
 DIRECTION SJW::seeked(){
-    Tile* tmp=map->getTile(getx()/50,gety()/50);
-    Tile* charTile=map->getTile((map->getCharacter()->getx()+25)/50,(map->getCharacter()->gety()+25)/50);
+    int tx,ty,cx,cy;
+    tx=getx()/50;
+    ty=gety()/50;
+    cx=(map->getCharacter()->getx()+25)/50;
+    cy=(map->getCharacter()->gety()+25)/50;
     if(getx()%50!=0||gety()%50!=0)
         return NONE;
-    if(tmp->getx()==charTile->getx()){
-        if(tmp->gety()<charTile->gety())
-            while(tmp->canpass()){
-                tmp=tmp->getDownTile();
-                if(tmp==charTile)
+    if(tx==cx){
+        int i=ty;
+        if(ty<cy)
+            while(map->getTile(cx,i)->canpass()){
+                i++;
+                if(i==cy)
                     return DOWN;
+                if(i==19)
+                    break;
             }
         else
-            while(tmp->canpass()){
-                tmp=tmp->getUpTile();
-                if(tmp==charTile)
+            while(map->getTile(cx,i)->canpass()){
+                i--;
+                if(i==cy)
                     return UP;
+                if(i==0)
+                    break;
             }
     }
-    else if(tmp->gety()==charTile->gety()){
-        if(tmp->getx()<charTile->getx())
-            while(tmp->canpass()){
-                tmp=tmp->getRightTile();
-                if(tmp==charTile)
+    else if(ty==cy){
+        int i=tx;
+        if(tx<cx)
+            while(map->getTile(i,cy)->canpass()){
+                i++;
+                if(i==cx)
                     return RIGHT;
+                if(i==69)
+                    break;
             }
         else
-            while(tmp->canpass()){
-                tmp=tmp->getLeftTile();
-                if(tmp==charTile)
+            while(map->getTile(i,cy)->canpass()){
+                i--;
+                if(i==cx)
                     return LEFT;
-                \
-
+                if(i==0)
+                    break;
             }
     }
     return NONE;
