@@ -66,6 +66,7 @@ Tile *Map::getTile(int x, int y)
     return mapData[y][x];
 }
 
+//This function places map tiles, my character, saejunwis
 void Map::placeObject()
 {
     me->setGeometry((740-50)/2, (515-50)/2, 50, 50);
@@ -82,7 +83,6 @@ void Map::placeObject()
     }
 
 }
-
 SJW *Map::getJunwi(int index)
 {
     return junwis[index];
