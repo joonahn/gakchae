@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <QWidget>
 #include <QTimer>
+#include <QKeyEvent>
 #include "character.h"
 #include "tile.h"
 #include "mainwindow.h"
@@ -29,6 +30,7 @@ public:
     Tile * getTile(int x, int y);
     void placeObject();
     SJW * getJunwi(int index);
+    void keyboardInput(QKeyEvent * event);
 public slots:
     void moveall();
     void reset();

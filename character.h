@@ -12,7 +12,7 @@
 class Map;
 
 class Character:public QLabel{
-Q_OBJECT
+    Q_OBJECT
 protected:
     int velocity;
     Map* map;
@@ -20,7 +20,7 @@ protected:
     DIRECTION movingdir;
 
 public:
-    Character(QWidget* parent,Map* _map,int _velocity,int _y,int _x);
+    Character(QWidget* parent,Map* _map,int _velocity,int _x,int _y);
     int getx();
     int gety();
     bool conflicted();

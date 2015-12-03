@@ -2,7 +2,7 @@
 #include "map.h"
 
 
-Character::Character(QWidget *parent, Map *_map,int _velocity,int _y,int _x):QLabel(parent),map(_map),velocity(_velocity),x(_x),y(_y),movingdir(NONE){
+Character::Character(QWidget *parent, Map *_map,int _velocity,int _x,int _y):QLabel(parent),map(_map),velocity(_velocity),x(_x),y(_y),movingdir(NONE){
     QPixmap pixmap(":/images/saenaegi.png");
     this->setPixmap(pixmap);
 }
@@ -36,7 +36,8 @@ bool Character::conflicted(){
 
 
 void Character::changedir(DIRECTION _dir){
-    movingdir=_dir;
+    if(x%50==0&&y%50==0)
+        movingdir=_dir;
 }
 
 void Character::move(){

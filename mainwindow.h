@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <QKeyEvent>
 #include "map.h"
 
 class Map;
@@ -17,6 +18,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    void keyPressEvent(QKeyEvent * event);
     ~MainWindow();
 
 private:
