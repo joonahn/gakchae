@@ -57,7 +57,7 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
         for(int j = 0;j<70;j++)
         {
             /*j is X axis coordination, i is j axis coordination */
-            mapData[i][j] = new Tile(this,this, static_cast<TileType>(rc1_mapdata[i][j]), i, j);
+            mapData[i][j] = new Tile(this,this, static_cast<TileType>(rc1_mapdata[i][j]), j, i);
         }
 
     //in pixel coordination
@@ -74,7 +74,7 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     placeObject();
     timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(moveall()));
-    timer->start(50);
+    timer->start(20);
     connect(me,SIGNAL(catched()),this,SLOT(reset()));
 }
 
