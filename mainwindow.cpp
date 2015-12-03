@@ -9,7 +9,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     map = new Map(this,parent);
     this->setCentralWidget(map);
-    this->setFixedSize(740,515);
+    //this->setFixedSize(740,515);
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    map->keyboardInput(event);
 }
 
 MainWindow::~MainWindow()

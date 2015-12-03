@@ -41,7 +41,7 @@ TileType Tile::gettype(){
 }
 
 bool Tile::canpass(){
-    return type==rfloor;
+    return (type==rfloor);
 }
 
 Tile* Tile::getDownTile(){
