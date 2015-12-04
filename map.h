@@ -10,6 +10,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "mapdata.h"
+#include "menustrip.h"
 
 
 
@@ -23,9 +24,12 @@ private:
     Character * me;
     SJW * junwis[6];
 
-    //mapData : RC 2nd Floor, mapData1 : RC 1st Floor
+    //mapData : RC 2nd Floor, mapData2 : RC 1st Floor
     Tile * mapData[20][70];
     Tile * mapData2[20][70];
+
+    //MenuStrip
+    Menustrip * menu;
 
     //MainWindow
     Ui::MainWindow * mainwindow;
