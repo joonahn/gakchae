@@ -56,7 +56,7 @@ public:
     void placeObject();
     void keyboardInput(QKeyEvent * event);
     int getPasswd();
-    Menustrip * getMenu();
+    Menustrip *getMenu();
 
 public slots:
     void moveall();

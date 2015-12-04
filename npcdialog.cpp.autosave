@@ -279,6 +279,11 @@ void Npcdialog::trapDialogSelect()
     closeDialog();
 }
 
+void Npcdialog::passwdDialog()
+{
+    
+}
+
 
 Npcdialog::Npcdialog(QWidget *parent, Room *_room) : QLabel(parent)
 {

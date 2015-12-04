@@ -40,6 +40,8 @@ private:
     void passwdDialogSelect(int choice);
     void closeDialog();
 
+signals:
+    void resumeGame();
 
 public:
     //Constructor

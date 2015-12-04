@@ -208,6 +208,11 @@ int Map::getPasswd()
     return insol2pwd;
 }
 
+Menustrip *Map::getMenu()
+{
+    return menu;
+}
+
 void Map::moveall()
 {
     for(int i=0;i<6;i++)
