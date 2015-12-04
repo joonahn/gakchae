@@ -4,6 +4,8 @@
 #include<iostream>
 #include<QLabel>
 #include<QWidget>
+#include<QImage>
+#include<QPainter>
 #include"mapdata.h"
 
 class Map;
@@ -43,6 +45,7 @@ private:
     bool closed;
     bool cleared;
     FRIENDS* myfriend;
+    QLabel* roomnumlabel;
 public:
     Room(QWidget* parent,Map* _map,TileType _type,int _x,int _y,int _roomnum,ROOMTYPE _rtype,int _passwd,FRIENDS* _myfriend);
     int open();
