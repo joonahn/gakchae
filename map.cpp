@@ -49,6 +49,7 @@ int rc2_mapdata[20][70]={
 
 Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
 {
+    int floor2=200,floor1=100;
     //Initialize & Load RC1 stage
     mainwindow = dynamic_cast<Ui::MainWindow*>(_mainwindow);
 
@@ -58,10 +59,13 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
         {
             /*j is X axis coordination, i is j axis coordination */
             if(rc1_mapdata[i][j]<4)
-                mapData[i][j]=new Room(this,this,static_cast<TileType>(rc1_mapdata[i][j]),j,i,201,EMPTY,0,NULL);
+                mapData[i][j]=new Room(this,this,static_cast<TileType>(rc1_mapdata[i][j]),j,i,++floor2,EMPTY,0,NULL);
             else
                 mapData[i][j] = new Tile(this, this, static_cast<TileType>(rc1_mapdata[i][j]), j, i);
-            mapData2[i][j] = new Tile(this, this, static_cast<TileType>(rc2_mapdata[i][j]), j, i);
+            if(rc2_mapdata[i][j]<4)
+                mapData2[i][j]=new Room(this,this,static_cast<TileType>(rc2_mapdata[i][j]),j,i,++floor1,EMPTY,0,NULL);
+            else
+                mapData2[i][j] = new Tile(this, this, static_cast<TileType>(rc2_mapdata[i][j]), j, i);
             mapData2[i][j]->setVisible(false);
         }
 
@@ -71,12 +75,12 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     me = new Character(this,this,5,350,750);
 
     //Initial Junwi Position Needed, in pixel coordination
-    junwis[0] = new SJW(this, this, 350,150,DOWN);
-    junwis[1] = new SJW(this, this, 2950,350,DOWN);
-    junwis[2] = new SJW(this, this, 1250,800,LEFT);
-    junwis[3] = new SJW(this, this, 1300,300, RIGHT);
-    junwis[4] = new SJW(this, this, 1850,300, UP);
-    junwis[5] = new SJW(this, this, 3050,200, RIGHT);
+    junwis[0] = new SJW(this, this, 350,150,DOWN,0);
+    junwis[1] = new SJW(this, this, 2950,350,DOWN,0);
+    junwis[2] = new SJW(this, this, 1250,800,LEFT,1);
+    junwis[3] = new SJW(this, this, 1300,300, RIGHT,1);
+    junwis[4] = new SJW(this, this, 1850,300, UP,2);
+    junwis[5] = new SJW(this, this, 3050,200, RIGHT,2);
 
     //MenuStrip Init
     menu = new Menustrip(this, 1000, 1000, RC_STAGE1);

@@ -95,7 +95,20 @@ void Character::check()
     }
 }
 
-SJW::SJW(QWidget* parent,Map* _map,int _x,int _y,DIRECTION _dir):Character(parent,_map,3,_x,_y){
+SJW::SJW(QWidget* parent,Map* _map,int _x,int _y,DIRECTION _dir,int num):Character(parent,_map,3,_x,_y){
+    QPixmap * pixmap;
+    switch(num){
+    case 0:
+        pixmap=new QPixmap(":/images/saejunwee.png");
+        break;
+    case 1:
+        pixmap=new QPixmap(":/images/saejunwee2.png");
+        break;
+    case 2:
+        pixmap=new QPixmap(":/images/saejunwee3.png");
+        break;
+    }
+    this->setPixmap(*pixmap);
     changedir(_dir);
 }
 

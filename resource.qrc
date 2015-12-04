@@ -33,5 +33,8 @@
         <file>rc_1st_floor.png</file>
         <file>rc_2nd_floor.png</file>
         <file>way_to_hyoja.png</file>
+        <file>saejunwee.png</file>
+        <file>saejunwee2.png</file>
+        <file>saejunwee3.png</file>
     </qresource>
 </RCC>
