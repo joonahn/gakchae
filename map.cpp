@@ -59,6 +59,7 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
             /*j is X axis coordination, i is j axis coordination */
             mapData[i][j] = new Tile(this,this, static_cast<TileType>(rc1_mapdata[i][j]), j, i);
             mapData2[i][j] = new Tile(this, this, static_cast<TileType>(rc2_mapdata[i][j]), j, i);
+            mapData2[i][j]->setVisible(false);
         }
 
     //in pixel coordination
