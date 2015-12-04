@@ -16,13 +16,15 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     character.cpp \
     tile.cpp \
-    map.cpp
+    map.cpp \
+    menustrip.cpp
 
 HEADERS  += mainwindow.h \
     tile.h \
     character.h \
     map.h \
-    mapdata.h
+    mapdata.h \
+    menustrip.h
 
 FORMS    += mainwindow.ui
 

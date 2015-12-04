@@ -62,6 +62,8 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
             mapData2[i][j]->setVisible(false);
         }
 
+
+
     //in pixel coordination
     me = new Character(this,this,5,350,750);
 
@@ -72,6 +74,9 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     junwis[3] = new SJW(this, this, 1300,300, RIGHT);
     junwis[4] = new SJW(this, this, 1850,300, UP);
     junwis[5] = new SJW(this, this, 3050,200, RIGHT);
+
+    //MenuStrip Init
+    menu = new Menustrip(this, 1000, 1000);
 
     placeObject();
     timer=new QTimer(this);
