@@ -13,6 +13,7 @@ class Map;
 
 class Character:public QLabel{
     Q_OBJECT
+
 protected:
     int velocity;
     Map* map;

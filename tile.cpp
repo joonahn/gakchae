@@ -84,12 +84,28 @@ int Tile::open()
 
 Room::Room(QWidget *parent, Map *_map, TileType _type, int _x, int _y, int _roomnum, ROOMTYPE _rtype, int _passwd,FRIENDS* _myfriend):Tile(parent,_map,_type,_x,_y),roomnum(_roomnum),rtype(_rtype),passwd(_passwd)
 {
-    myfriend=new FRIENDS;
-    myfriend->money=_myfriend->money;
-    myfriend->sleep=_myfriend->sleep;
+    QImage *image;
+    switch(gettype()){
+    case rup:
+        image=new QImage(":/images/rup.png");
+        break;
+    case rdown:
+        image=new QImage(":/images/rdown.png");
+        break;
+    case rleft:
+        image=new QImage(":/images/rleft.png");
+        break;
+    case rright:
+        image=new QImage(":/images/rright.png");
+        break;
+    }
+    QPainter* painter = new QPainter(image);
+    painter->setPen(Qt::blue);
+    painter->setFont(QFont("Arial",3));
+    painter->drawText(image->rect(),Qt::AlignCenter,QString::number(roomnum));
+    this->setPixmap(QPixmap::fromImage(*image));
     closed=passwd!=0;
     cleared=false;
-    this->setText(QString::number(roomnum));
 }
 
 int Room::open()
@@ -111,4 +127,16 @@ FRIENDS *Room::getfriend()
 {
     return myfriend;
 }
+
+ROOMTYPE Room::getroomtype()
+{
+    return rtype;
+}
+
+void Room::deletefriend()
+{
+    delete myfriend;
+    myfriend=NULL;
+}
+
 

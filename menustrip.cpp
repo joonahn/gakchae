@@ -74,8 +74,20 @@ void Menustrip::refreshText()
     moneylabel->setText(QString::number(money));
 }
 
+void Menustrip::stoptimer()
+{
+    timer->stop();
+}
+
+void Menustrip::resumetimer()
+{
+    timer->start(1000);
+}
+
 void Menustrip::decreaseTime()
 {
     time--;
     refreshText();
+    if(time==0)
+        emit gameset();
 }

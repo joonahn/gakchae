@@ -57,7 +57,10 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
         for(int j = 0;j<70;j++)
         {
             /*j is X axis coordination, i is j axis coordination */
-            mapData[i][j] = new Tile(this,this, static_cast<TileType>(rc1_mapdata[i][j]), j, i);
+            if(rc1_mapdata[i][j]<4)
+                mapData[i][j]=new Room(this,this,static_cast<TileType>(rc1_mapdata[i][j]),j,i,201,EMPTY,0,NULL);
+            else
+                mapData[i][j] = new Tile(this, this, static_cast<TileType>(rc1_mapdata[i][j]), j, i);
             mapData2[i][j] = new Tile(this, this, static_cast<TileType>(rc2_mapdata[i][j]), j, i);
             mapData2[i][j]->setVisible(false);
         }
@@ -76,7 +79,6 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     junwis[5] = new SJW(this, this, 3050,200, RIGHT);
 
     //MenuStrip Init
-
     menu = new Menustrip(this, 1000, 1000, RC_STAGE1);
 
     placeObject();
@@ -84,6 +86,7 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     connect(timer,SIGNAL(timeout()),this,SLOT(moveall()));
     timer->start(20);
     connect(me,SIGNAL(catched()),this,SLOT(reset()));
+    connect(menu,SIGNAL(gameset()),this,SLOT(reset())); //game over.
 }
 
 Character *Map::getCharacter()

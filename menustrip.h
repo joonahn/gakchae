@@ -7,7 +7,7 @@
 #include <QLabel>
 #include <QPixmap>
 
-class Menustrip : QLabel {
+class Menustrip : public QLabel {
     Q_OBJECT
 private:
     int time;
@@ -32,7 +32,10 @@ public:
 
     //UI Function
     void refreshText();
-
+    void stoptimer();
+    void resumetimer();
+signals:
+    void gameset();
 public slots:
     //Slots
     void decreaseTime();
