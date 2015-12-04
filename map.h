@@ -41,9 +41,11 @@ private:
     //insolzas' roomnum
     int insol[3];
 
-    int insol2pwd;
+    //0 for nothing, 1 for checking insol2, 2 for find insol1, 3 for clear insol2
+    int story;
+    int friendnum;
 
-    bool insol2found;
+    int insol2pwd;
 
 public:
     Map(QMainWindow * _mainwindow,QWidget *parent);
@@ -57,10 +59,13 @@ public:
     void keyboardInput(QKeyEvent * event);
     int getPasswd();
     Menustrip * getMenu();
+    int getstory();
+    void nextstory();
 
 public slots:
     void moveall();
     void reset();
+    void resume();
 signals:
 };
 

@@ -47,7 +47,7 @@ int rc2_mapdata[20][70]={
 
 };
 
-Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent),insol2found(false)
+Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
 {
     int floor2=201,floor1=101;
     insol[0]=rand()%148+101;
@@ -127,7 +127,7 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent),insol2found(f
     junwis[2] = new SJW(this, this, 1250,800,LEFT,1);
     junwis[3] = new SJW(this, this, 1300,300, RIGHT,1);
     junwis[4] = new SJW(this, this, 1850,300, UP,2);
-    junwis[5] = new SJW(this, this, 3050,200, RIGHT,2);
+    junwis[5] = new SJW(this, this, 3050,450, RIGHT,2);
 
     //MenuStrip Init
     menu = new Menustrip(this, 1000, 1000, RC_STAGE1);
@@ -138,6 +138,9 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent),insol2found(f
     timer->start(20);
     connect(me,SIGNAL(catched()),this,SLOT(reset()));
     connect(menu,SIGNAL(gameset()),this,SLOT(reset())); //game over.
+    story=0;
+    friendnum=0;
+    stage=2;
 }
 
 Character *Map::getCharacter()
@@ -148,8 +151,12 @@ Character *Map::getCharacter()
 Tile *Map::getTile(int x, int y)
 {
     if(y>=0 && x>=0)
-        if(y<20 && x<70)
-            return mapData[y][x];
+        if(y<20 && x<70){
+            if(stage==2)
+                return mapData[y][x];
+            else
+                return mapData2[y][x];
+        }
     return (Tile *)0;
 }
 
@@ -162,22 +169,92 @@ void Map::placeObject()
     my_y = me->gety();
     screen_center_x = ((740-50)/2);
     screen_center_y = ((515-50)/2);
-    for(int i = 0;i<20;i++)
-        for(int j = 0;j<70;j++)
-        {
+    if(stage==2){
+        for(int i = 0;i<20;i++)
+            for(int j = 0;j<70;j++)
+            {
                 mapData[i][j]->move((j<<6)-(j<<4)+(j<<1) - my_x + screen_center_x
+                                        ,(i<<6)-(i<<4)+(i<<1) - my_y + screen_center_y);
+            }
+
+    }
+    else
+        for(int i=0;i<20;i++)
+            for(int j=0;j<70;j++){
+                mapData2[i][j]->move((j<<6)-(j<<4)+(j<<1) - my_x + screen_center_x
                                     ,(i<<6)-(i<<4)+(i<<1) - my_y + screen_center_y);
-        }
+            }
     for(int i = 0;i<6;i++)
     {
         junwis[i]->setGeometry(junwis[i]->getx() - my_x + screen_center_x,
-                               junwis[i]->gety() - my_y + screen_center_y, 50, 50);
+                           junwis[i]->gety() - my_y + screen_center_y, 50, 50);
     }
 }
 
 SJW *Map::getJunwi(int index)
 {
     return junwis[index];
+}
+
+void Map::changeStage()
+{
+    if(stage==2){
+        stage=1;
+        for(int i=0;i<20;i++)
+            for(int j=0;j<70;j++){
+                mapData[i][j]->setVisible(false);
+                mapData2[i][j]->setVisible(true);
+            }
+        me->setx(100);
+        me->sety(200);
+        junwis[0]->setx(300);
+        junwis[0]->sety(300);
+        junwis[0]->changedir(DOWN);
+        junwis[1]->setx(2000);
+        junwis[1]->sety(50);
+        junwis[1]->changedir(LEFT);
+        junwis[2]->setx(850);
+        junwis[2]->sety(450);
+        junwis[2]->changedir(RIGHT);
+        junwis[3]->setx(2250);
+        junwis[3]->sety(650);
+        junwis[3]->changedir(UP);
+        junwis[4]->setx(450);
+        junwis[4]->sety(800);
+        junwis[4]->changedir(RIGHT);
+        junwis[5]->setx(1300);
+        junwis[5]->sety(300);
+        junwis[5]->changedir(DOWN);
+    }
+    else{
+        stage=2;
+        for(int i=0;i<20;i++)
+            for(int j=0;j<70;j++){
+                mapData2[i][j]->setVisible(false);
+                mapData[i][j]->setVisible(true);
+            }
+        me->setx(3350);
+        me->sety(550);
+        junwis[0]->sety(150);
+        junwis[0]->setx(350);
+        junwis[0]->changedir(DOWN);
+        junwis[1]->sety(350);
+        junwis[1]->setx(2950);
+        junwis[1]->changedir(DOWN);
+        junwis[2]->sety(800);
+        junwis[2]->setx(1250);
+        junwis[2]->changedir(LEFT);
+        junwis[3]->sety(300);
+        junwis[3]->setx(1300);
+        junwis[3]->changedir(RIGHT);
+        junwis[4]->sety(300);
+        junwis[4]->setx(1850);
+        junwis[4]->changedir(UP);
+        junwis[5]->sety(450);
+        junwis[5]->setx(3050);
+        junwis[5]->changedir(RIGHT);
+    }
+    placeObject();
 }
 
 void Map::keyboardInput(QKeyEvent *event)
@@ -196,6 +273,9 @@ void Map::keyboardInput(QKeyEvent *event)
     case Qt::Key_Down:
         me->changedir(DOWN);
         break;
+    case Qt::Key_Space:
+        changeStage();
+        break;
     default:
         event->ignore();
         break;
@@ -208,10 +288,23 @@ int Map::getPasswd()
     return insol2pwd;
 }
 
+
 Menustrip *Map::getMenu()
 {
     return menu;
 }
+
+
+int Map::getstory()
+{
+    return story;
+}
+
+void Map::nextstory()
+{
+    story++;
+}
+
 
 void Map::moveall()
 {
@@ -224,6 +317,12 @@ void Map::moveall()
 
 void Map::reset()
 {
+    if(stage==1)
+        for(int i=0;i<20;i++)
+            for(int j=0;j<70;j++){
+                mapData[i][j]->setVisible(true);
+                mapData2[i][j]->setVisible(false);
+            }
     me->sety(750);
     me->setx(350);
     me->changedir(NONE);
@@ -242,7 +341,14 @@ void Map::reset()
     junwis[4]->sety(300);
     junwis[4]->setx(1850);
     junwis[4]->changedir(UP);
-    junwis[5]->sety(200);
+    junwis[5]->sety(450);
     junwis[5]->setx(3050);
     junwis[5]->changedir(RIGHT);
+    stage=2;
+}
+
+void Map::resume()
+{
+    timer->start(20);
+    placeObject();
 }

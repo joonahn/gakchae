@@ -6,6 +6,7 @@
 #include<QWidget>
 #include<QImage>
 #include<QPainter>
+#include<cstdlib>
 #include"mapdata.h"
 
 class Map;
@@ -15,6 +16,7 @@ typedef enum{UP,DOWN,LEFT,RIGHT,NONE}DIRECTION;
 typedef enum{INSOL1,INSOL2,INSOL3,FRIEND,EMPTY,TRAP}ROOMTYPE;
 
 typedef struct friends{
+    //0 : sleep,1 : go,2 : don't go
     int friendtype;
     int money;
 }FRIENDS;

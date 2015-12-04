@@ -107,7 +107,13 @@ Room::Room(QWidget *parent, Map *_map, TileType _type, int _x, int _y, int _room
     painter->setFont(QFont("Arial",3));
     painter->drawText(image->rect(),Qt::AlignCenter,QString::number(roomnum));
     this->setPixmap(QPixmap::fromImage(*image));
-    cleared=false;
+    if(rtype==FRIEND){
+        myfriend=new FRIENDS;
+        myfriend->friendtype=rand()%3;
+        myfriend->money=rand()%4*1000;
+        if(passwd!=0)
+            myfriend->money+=10000;
+    }
 }
 
 int Room::open()
@@ -118,11 +124,6 @@ int Room::open()
 bool Room::isClosed()
 {
     return passwd!=0;
-}
-
-bool Room::isStoryFinished()
-{
-    return cleared;
 }
 
 FRIENDS *Room::getfriend()
