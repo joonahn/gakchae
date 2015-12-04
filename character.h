@@ -36,7 +36,7 @@ signals:
 
 class SJW:public Character{
 public:
-    SJW(QWidget* parent,Map* _map,int _x,int _y,DIRECTION _dir);
+    SJW(QWidget* parent,Map* _map,int _x,int _y,DIRECTION _dir,int num);
     void moveSJW();
 private:
     DIRECTION seeked();

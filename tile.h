@@ -52,8 +52,9 @@ public:
     bool isClosed();
     bool isStoryFinished();
     FRIENDS* getfriend();
+    ROOMTYPE getroomtype();
+    void deletefriend();
 };
-
 
 
 #endif // TILE
