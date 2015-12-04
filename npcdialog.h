@@ -11,10 +11,13 @@ class Npcdialog : public QLabel
 private:
     Room * room;
     int nselect;
+    bool locked;
     QLabel * NPCimage;
     QLabel * dialoglabel;
     QLabel * dialogtextlabel;
     QLabel * dialogselectlabel[2];
+    QLabel * buttons[12];
+    QLabel * inputpw[4];
 
 public:
     //Constructor
@@ -25,6 +28,7 @@ public:
 
     //Place UI *** need to be called when dialog, select text changed ***
     void refreshUI();
+    void changeDialogToUnlocked();
 };
 
 #endif // NPCDIALOG_H
