@@ -75,3 +75,18 @@ int Tile::getx(){
 int Tile::gety(){
     return y;
 }
+
+int Tile::open()
+{
+    return -1;
+}
+
+Room::Room(QWidget *parent, Map *_map, TileType _type, int _x, int _y, int _roomnum, ROOMTYPE _rtype, int _passwd):Tile(parent,_map,_type,_x,_y),roomnum(_roomnum),rtype(_rtype),passwd(_passwd)
+{
+    this->setText(QString::number(roomnum));
+}
+
+int Room::open()
+{
+    return passwd;
+}
