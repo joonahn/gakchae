@@ -12,8 +12,6 @@
 #include "mapdata.h"
 #include "menustrip.h"
 
-
-
 enum stage{RC_STAGE1, RC_STAGE2, HYOJA_MARKET};
 
 class Map : public QWidget

@@ -14,11 +14,11 @@ private:
     int money;
     int stage;
     QTimer * timer;
-    QLabel * timelabel, *moneylabel;
+    QLabel * timelabel, *moneylabel, *stagelabel;
 
 public:
     //Constructor
-    Menustrip(QWidget * parent, int initial_money, int initial_time);
+    Menustrip(QWidget * parent, int initial_money, int initial_time, int initial_stage);
 
     //Getters
     int getTime();

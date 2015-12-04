@@ -17,14 +17,16 @@ SOURCES += main.cpp\
     character.cpp \
     tile.cpp \
     map.cpp \
-    menustrip.cpp
+    menustrip.cpp \
+    npcdialog.cpp
 
 HEADERS  += mainwindow.h \
     tile.h \
     character.h \
     map.h \
     mapdata.h \
-    menustrip.h
+    menustrip.h \
+    npcdialog.h
 
 FORMS    += mainwindow.ui
 

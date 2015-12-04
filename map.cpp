@@ -76,7 +76,8 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     junwis[5] = new SJW(this, this, 3050,200, RIGHT);
 
     //MenuStrip Init
-    menu = new Menustrip(this, 1000, 1000);
+
+    menu = new Menustrip(this, 1000, 1000, RC_STAGE1);
 
     placeObject();
     timer=new QTimer(this);
