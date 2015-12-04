@@ -82,7 +82,7 @@ int Tile::open()
     return -1;
 }
 
-Room::Room(QWidget *parent, Map *_map, TileType _type, int _x, int _y, int _roomnum, ROOMTYPE _rtype, int _passwd,FRIENDS* _myfriend):Tile(parent,_map,_type,_x,_y),roomnum(_roomnum),rtype(_rtype),passwd(_passwd)
+Room::Room(QWidget *parent, Map *_map, TileType _type, int _x, int _y, int _roomnum, ROOMTYPE _rtype, int _passwd):Tile(parent,_map,_type,_x,_y),roomnum(_roomnum),rtype(_rtype),passwd(_passwd)
 {
     QImage *image;
     switch(gettype()){
@@ -100,11 +100,13 @@ Room::Room(QWidget *parent, Map *_map, TileType _type, int _x, int _y, int _room
         break;
     }
     QPainter* painter = new QPainter(image);
-    painter->setPen(Qt::blue);
+    if(rtype<3)
+        painter->setPen(Qt::red);
+    else
+        painter->setPen(Qt::blue);
     painter->setFont(QFont("Arial",3));
     painter->drawText(image->rect(),Qt::AlignCenter,QString::number(roomnum));
     this->setPixmap(QPixmap::fromImage(*image));
-    closed=passwd!=0;
     cleared=false;
 }
 
@@ -115,7 +117,7 @@ int Room::open()
 
 bool Room::isClosed()
 {
-    return closed;
+    return passwd!=0;
 }
 
 bool Room::isStoryFinished()

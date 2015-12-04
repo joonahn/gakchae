@@ -7,6 +7,7 @@
 #include<QTimer>
 #include<QPixmap>
 #include<QLabel>
+#include<cstdlib>
 #include"tile.h"
 
 class Map;
