@@ -10,7 +10,7 @@ class Map;
 
 typedef enum{UP,DOWN,LEFT,RIGHT,NONE}DIRECTION;
 
-typedef enum{INSOL1,INSOL2,INSOL3,CLOSED,FRIEND,EMPTY,TRAP}ROOMTYPE;
+typedef enum{INSOL1,INSOL2,INSOL3,FRIEND,EMPTY,TRAP}ROOMTYPE;
 
 class Tile:public QLabel{
 private:
@@ -34,6 +34,9 @@ private:
     int roomnum;
     ROOMTYPE rtype;
     int passwd;
+    bool isClosed;
+    bool isStoryFinished;
+    int friendtype;
 };
 
 

@@ -28,8 +28,9 @@ Tile::Tile(QWidget* parent,Map* _map,TileType _type,int _x,int _y):QLabel(parent
     case rfill:
         pixmap=new QPixmap(":/images/rfill.png");
         break;
-    case door:
-        pixmap=new QPixmap(":/images/rfill.png"); //need to be changed
+    case downstairs:
+    case upstairs:
+        pixmap=new QPixmap(":/images/stairs.png");
         break;
     }
     this->setPixmap(*pixmap);

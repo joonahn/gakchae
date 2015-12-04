@@ -19,18 +19,34 @@ class Map : public QWidget
 {
 Q_OBJECT
 private:
+    //Character Objects
     Character * me;
     SJW * junwis[6];
+
+    //mapData : RC 2nd Floor, mapData1 : RC 1st Floor
     Tile * mapData[20][70];
+    Tile * mapData2[20][70];
+
+    //MainWindow
     Ui::MainWindow * mainwindow;
+
+    //Frame move Timer
     QTimer * timer;
+
+    //Stage Variable
+    int stage;
+
 public:
     Map(QMainWindow * _mainwindow,QWidget *parent);
     Character * getCharacter();
     Tile * getTile(int x, int y);
-    void placeObject();
     SJW * getJunwi(int index);
+
+    void changeStage();
+    void finishRC();
+    void placeObject();
     void keyboardInput(QKeyEvent * event);
+
 public slots:
     void moveall();
     void reset();
