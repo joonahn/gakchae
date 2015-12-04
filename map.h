@@ -38,6 +38,13 @@ private:
     //Stage Variable
     int stage;
 
+    //insolzas' roomnum
+    int insol[3];
+
+    int insol2pwd;
+
+    bool insol2found;
+
 public:
     Map(QMainWindow * _mainwindow,QWidget *parent);
     Character * getCharacter();
@@ -48,6 +55,7 @@ public:
     void finishRC();
     void placeObject();
     void keyboardInput(QKeyEvent * event);
+    int getPasswd();
 
 public slots:
     void moveall();

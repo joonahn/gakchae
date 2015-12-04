@@ -15,7 +15,7 @@ typedef enum{UP,DOWN,LEFT,RIGHT,NONE}DIRECTION;
 typedef enum{INSOL1,INSOL2,INSOL3,FRIEND,EMPTY,TRAP}ROOMTYPE;
 
 typedef struct friends{
-    bool sleep;
+    int friendtype;
     int money;
 }FRIENDS;
 
@@ -42,15 +42,12 @@ private:
     int roomnum;
     ROOMTYPE rtype;
     int passwd;
-    bool closed;
-    bool cleared;
     FRIENDS* myfriend;
     QLabel* roomnumlabel;
 public:
-    Room(QWidget* parent,Map* _map,TileType _type,int _x,int _y,int _roomnum,ROOMTYPE _rtype,int _passwd,FRIENDS* _myfriend);
+    Room(QWidget* parent,Map* _map,TileType _type,int _x,int _y,int _roomnum,ROOMTYPE _rtype,int _passwd);
     int open();
     bool isClosed();
-    bool isStoryFinished();
     FRIENDS* getfriend();
     ROOMTYPE getroomtype();
     void deletefriend();
