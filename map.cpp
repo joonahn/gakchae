@@ -58,6 +58,7 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
         {
             /*j is X axis coordination, i is j axis coordination */
             mapData[i][j] = new Tile(this,this, static_cast<TileType>(rc1_mapdata[i][j]), j, i);
+            mapData2[i][j] = new Tile(this, this, static_cast<TileType>(rc2_mapdata[i][j]), j, i);
         }
 
     //in pixel coordination
@@ -94,17 +95,22 @@ Tile *Map::getTile(int x, int y)
 //This function places map tiles, my character, saejunwis
 void Map::placeObject()
 {
+    int my_x, my_y, screen_center_x, screen_center_y;
     me->setGeometry((740-50)/2, (515-50)/2, 50, 50);
+    my_x = me->getx();
+    my_y = me->gety();
+    screen_center_x = ((740-50)/2);
+    screen_center_y = ((515-50)/2);
     for(int i = 0;i<20;i++)
         for(int j = 0;j<70;j++)
         {
-            mapData[i][j]->setGeometry(j*50 - me->getx() + ((740-50)/2),
-                                       i*50 - me->gety() + ((515-50)/2), 50, 50);
+                mapData[i][j]->move((j<<6)-(j<<4)+(j<<1) - my_x + screen_center_x
+                                    ,(i<<6)-(i<<4)+(i<<1) - my_y + screen_center_y);
         }
     for(int i = 0;i<6;i++)
     {
-        junwis[i]->setGeometry(junwis[i]->getx() - me->getx() + ((740-50)/2),
-                               junwis[i]->gety() - me->gety() + ((515-50)/2), 50, 50);
+        junwis[i]->setGeometry(junwis[i]->getx() - my_x + screen_center_x,
+                               junwis[i]->gety() - my_y + screen_center_y, 50, 50);
     }
 }
 

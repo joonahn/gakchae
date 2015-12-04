@@ -12,5 +12,22 @@
         <file>gamestartbutton.png</file>
         <file>howto_button.png</file>
         <file>start_window.png</file>
+        <file>insolja.png</file>
+        <file>stairs.png</file>
+        <file>room.png</file>
+        <file>blacksquare.png</file>
+        <file>buttonok.png</file>
+        <file>button0.png</file>
+        <file>button1.png</file>
+        <file>button2.png</file>
+        <file>button3.png</file>
+        <file>button4.png</file>
+        <file>button5.png</file>
+        <file>button6.png</file>
+        <file>button7.png</file>
+        <file>button8.png</file>
+        <file>button9.png</file>
+        <file>buttonback.png</file>
+        <file>doorlock_back.png</file>
     </qresource>
 </RCC>

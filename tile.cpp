@@ -28,8 +28,9 @@ Tile::Tile(QWidget* parent,Map* _map,TileType _type,int _x,int _y):QLabel(parent
     case rfill:
         pixmap=new QPixmap(":/images/rfill.png");
         break;
-    case door:
-        pixmap=new QPixmap(":/images/rfill.png"); //need to be changed
+    case downstairs:
+    case upstairs:
+        pixmap=new QPixmap(":/images/stairs.png");
         break;
     }
     this->setPixmap(*pixmap);
@@ -81,8 +82,13 @@ int Tile::open()
     return -1;
 }
 
-Room::Room(QWidget *parent, Map *_map, TileType _type, int _x, int _y, int _roomnum, ROOMTYPE _rtype, int _passwd):Tile(parent,_map,_type,_x,_y),roomnum(_roomnum),rtype(_rtype),passwd(_passwd)
+Room::Room(QWidget *parent, Map *_map, TileType _type, int _x, int _y, int _roomnum, ROOMTYPE _rtype, int _passwd,FRIENDS* _myfriend):Tile(parent,_map,_type,_x,_y),roomnum(_roomnum),rtype(_rtype),passwd(_passwd)
 {
+    myfriend=new FRIENDS;
+    myfriend->money=_myfriend->money;
+    myfriend->sleep=_myfriend->sleep;
+    closed=passwd!=0;
+    cleared=false;
     this->setText(QString::number(roomnum));
 }
 
@@ -90,3 +96,19 @@ int Room::open()
 {
     return passwd;
 }
+
+bool Room::isClosed()
+{
+    return closed;
+}
+
+bool Room::isStoryFinished()
+{
+    return cleared;
+}
+
+FRIENDS *Room::getfriend()
+{
+    return myfriend;
+}
+
