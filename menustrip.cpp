@@ -64,10 +64,13 @@ void Menustrip::setStage(int _stage)
     {
     case RC_STAGE1:
         pixmap = new QPixmap(":/images/rc_2nd_floor.png");
+        break;
     case RC_STAGE2:
         pixmap = new QPixmap(":/images/rc_1st_floor.png");
+        break;
     case HYOJA_MARKET:
         pixmap = new QPixmap(":/images/way_to_hyoja.png");
+        break;
     }
     stagelabel->setPixmap(*pixmap);
     delete pixmap;

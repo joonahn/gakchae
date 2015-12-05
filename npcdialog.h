@@ -41,6 +41,9 @@ private:
     void passwdDialogSelect(int choice);
     void closeDialog();
 
+    //UIFunction
+    void setLabelTextColor(QLabel * label);
+
 signals:
     void resumeGame();
 
