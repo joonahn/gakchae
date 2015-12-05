@@ -326,7 +326,9 @@ void Npcdialog::passwdDialogSelect(int choice)
         }
         else
         {
+            inputpwlabel[inputpw.length()]->setText("●");
             inputpw.append((const char)('0' + choice));
+            qDebug(inputpw.toStdString().c_str());
         }
     }
     else if (choice == -1)
@@ -453,7 +455,7 @@ Npcdialog::Npcdialog(QWidget *parent, Room *_room) : QLabel(parent)
 
     //Set Inner variables
     room = _room;
-    unlocked = room->isClosed();
+    unlocked = !(room->isClosed());
     map = dynamic_cast<Map*>(parent);
 
     //Connect
@@ -520,10 +522,34 @@ void Npcdialog::keyboardInput(QKeyEvent *event)
         case Qt::Key_Down:
             dialogselectlabel[currentchoice]->setText(dialogselectlabel[currentchoice]->text().remove(0,1));
             currentchoice = (currentchoice + 1) % nselect;
-            dialogselectlabel[currentchoice]->setText(QString("▶").append(dialogselectlabel[currentchoice]));
+            dialogselectlabel[currentchoice]->setText(QString("▶").append(dialogselectlabel[currentchoice]->text()));
+            break;
         case Qt::Key_Up:
-        case Qt::Key_Enter:
-        case Qt::Key_Backspace:
+            dialogselectlabel[currentchoice]->setText(dialogselectlabel[currentchoice]->text().remove(0,1));
+            currentchoice = (currentchoice - 1 + nselect) % nselect;
+            dialogselectlabel[currentchoice]->setText(QString("▶").append(dialogselectlabel[currentchoice]->text()));
+            break;
+        case Qt::Key_Space:
+        {
+            ROOMTYPE roomtype = room->getroomtype();
+            if(roomtype == INSOL1)
+                insol1DialogSelect(currentindex, currentchoice);
+            else if(roomtype == INSOL2)
+                insol2DialogSelect(currentindex, currentchoice);
+            else if(roomtype == FRIEND)
+            {
+                friendDialogSelect(currentindex, currentchoice);
+            }
+            else if(roomtype == EMPTY)
+            {
+                emptyDialogSelect();
+            }
+            else if(roomtype == TRAP)
+            {
+                trapDialogSelect();
+            }
+            break;
+        }
         default:
             event->ignore();
             break;
@@ -531,35 +557,35 @@ void Npcdialog::keyboardInput(QKeyEvent *event)
     }
     else
     {
+        int inputnum = -1;
         switch(event->key())
         {
-        int inputnum = -1;
         case Qt::Key_Escape:
             closeDialog();
             break;
         case Qt::Key_0:
             inputnum = 0;
         case Qt::Key_1:
-            if(inputnum!=-1)inputnum = 1;
+            if(inputnum==-1)inputnum = 1;
         case Qt::Key_2:
-            if(inputnum!=-1)inputnum = 2;
+            if(inputnum==-1)inputnum = 2;
         case Qt::Key_3:
-            if(inputnum!=-1)inputnum = 3;
+            if(inputnum==-1)inputnum = 3;
         case Qt::Key_4:
-            if(inputnum!=-1)inputnum = 4;
+            if(inputnum==-1)inputnum = 4;
         case Qt::Key_5:
-            if(inputnum!=-1)inputnum = 5;
+            if(inputnum==-1)inputnum = 5;
         case Qt::Key_6:
-            if(inputnum!=-1)inputnum = 6;
+            if(inputnum==-1)inputnum = 6;
         case Qt::Key_7:
-            if(inputnum!=-1)inputnum = 7;
+            if(inputnum==-1)inputnum = 7;
         case Qt::Key_8:
-            if(inputnum!=-1)inputnum = 8;
+            if(inputnum==-1)inputnum = 8;
         case Qt::Key_9:
-            if(inputnum!=-1)inputnum = 9;
+            if(inputnum==-1)inputnum = 9;
             passwdDialogSelect(inputnum);
             break;
-        case Qt::Key_Enter:
+        case Qt::Key_Space:
             passwdDialogSelect(-2);
             break;
         case Qt::Key_Backspace:
