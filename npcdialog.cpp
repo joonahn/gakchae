@@ -1,5 +1,7 @@
 #include "npcdialog.h"
 #include "map.h"
+#include <QFont.h>
+#include <QPalette>
 
 void Npcdialog::insol1Dialog(int index)
 {
@@ -414,6 +416,8 @@ Npcdialog::Npcdialog(QWidget *parent, Room *_room) : QLabel(parent)
     dialogtextlabel->setVisible(true);
     for(int i = 0;i<2;i++)
         dialogselectlabel[i]->setVisible(true);
+
+    //Set Font & Font color
 
     //Set Inner variables
     room = _room;
