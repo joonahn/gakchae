@@ -393,7 +393,8 @@ Npcdialog::Npcdialog(QWidget *parent, Room *_room) : QLabel(parent)
     inputpwlabel[3] = new QLabel(this);
 
     //Set Position of Label
-    dialoglabel->move(0,0);
+    setGeometry(0,0,740,515);
+    dialoglabel->setGeometry(0,0, 740,515);
     NPCimage->move(50,65);
     NPCname->move(45,330);
     dialogtextlabel->move(45,370);
@@ -404,7 +405,17 @@ Npcdialog::Npcdialog(QWidget *parent, Room *_room) : QLabel(parent)
     inputpwlabel[2]->move(390,448);
     inputpwlabel[3]->move(460,448);
 
+    //Make it visible
+    this->setVisible(true);
+    NPCname->setVisible(true);
+    NPCimage->setVisible(true);
+    dialoglabel->setVisible(true);
+    dialogtextlabel->setVisible(true);
+    for(int i = 0;i<2;i++)
+        dialogselectlabel[i]->setVisible(true);
+
     //Set Inner variables
+    unlocked = room->isClosed();
     room = _room;
     map = dynamic_cast<Map*>(parent);
 
@@ -445,5 +456,18 @@ Npcdialog::Npcdialog(QWidget *parent, Room *_room) : QLabel(parent)
             emptyDialog();
             break;
         }
+    }
+}
+
+void Npcdialog::keyboardInput(QKeyEvent *event)
+{
+    switch(event->key())
+    {
+    case Qt::Key_Escape:
+        closeDialog();
+        break;
+    default:
+        event->ignore();
+        break;
     }
 }

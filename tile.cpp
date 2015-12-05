@@ -33,6 +33,8 @@ Tile::Tile(QWidget* parent,Map* _map,TileType _type,int _x,int _y):QLabel(parent
         break;
     case door:
         //do sth
+        pixmap=new QPixmap(":/images/stairs.png");
+        break;
     }
     this->setPixmap(*pixmap);
     delete pixmap;
