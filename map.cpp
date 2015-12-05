@@ -141,6 +141,7 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     story=0;
     friendnum=0;
     stage=2;
+    npcdialog=NULL;
 }
 
 Character *Map::getCharacter()
@@ -259,28 +260,42 @@ void Map::changeStage()
 
 void Map::keyboardInput(QKeyEvent *event)
 {
-    switch(event->key())
-    {
-    case Qt::Key_Left:
-        me->changedir(LEFT);
-        break;
-    case Qt::Key_Right:
-        me->changedir(RIGHT);
-        break;
-    case Qt::Key_Up:
-        me->changedir(UP);
-        break;
-    case Qt::Key_Down:
-        me->changedir(DOWN);
-        break;
-    case Qt::Key_Space:
-        changeStage();
-        break;
-    default:
-        event->ignore();
-        break;
-    }
-
+    if(npcdialog==NULL)
+        switch(event->key())
+        {
+        case Qt::Key_Left:
+            me->changedir(LEFT);
+            break;
+        case Qt::Key_Right:
+            me->changedir(RIGHT);
+            break;
+        case Qt::Key_Up:
+            me->changedir(UP);
+            break;
+        case Qt::Key_Down:
+            me->changedir(DOWN);
+            break;
+        case Qt::Key_Space:
+            Tile* tmp=me->getspacebar();
+            switch(tmp->gettype()){
+            case stairs:
+                changeStage();
+                break;
+            case door:
+                if(story==3)
+                        finishRC();
+                break;
+            default:
+                timer->stop();
+                npcdialog=new Npcdialog(this,dynamic_cast<Room*>(tmp));
+            }
+            break;
+        default:
+            event->ignore();
+            break;
+        }
+    else
+        npcdialog->keyboardInput(event);
 }
 
 int Map::getPasswd()
@@ -342,6 +357,8 @@ void Map::reset()
 
 void Map::resume()
 {
+    delete npcdialog;
+    npcdialog=NULL;
     timer->start(20);
     placeObject();
 }

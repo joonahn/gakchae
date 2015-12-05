@@ -2,7 +2,9 @@
 #define NPCDIALOG_H
 
 #include "tile.h"
-#include "map.h"
+
+
+class Map;
 
 //typedef enum{INSOL1,INSOL2,INSOL3,FRIEND,EMPTY,TRAP}ROOMTYPE;
 

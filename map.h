@@ -11,6 +11,7 @@
 #include "ui_mainwindow.h"
 #include "mapdata.h"
 #include "menustrip.h"
+#include "npcdialog.h"
 
 enum stage{RC_STAGE1, RC_STAGE2, HYOJA_MARKET};
 
@@ -32,6 +33,9 @@ private:
     //MainWindow
     Ui::MainWindow * mainwindow;
 
+    //Npcdialog
+    Npcdialog* npcdialog;
+
     //Frame move Timer
     QTimer * timer;
 
@@ -46,7 +50,6 @@ private:
     int friendnum;
 
     int insol2pwd;
-
 public:
     Map(QMainWindow * _mainwindow,QWidget *parent);
     Character * getCharacter();

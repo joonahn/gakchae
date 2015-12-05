@@ -31,6 +31,7 @@ public:
     void setx(int _x);
     void sety(int _y);
     void check();
+    Tile* getspacebar();
 signals:
     void catched();
 };

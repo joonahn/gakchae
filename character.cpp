@@ -95,6 +95,41 @@ void Character::check()
     }
 }
 
+Tile *Character::getspacebar()
+{
+    Tile* tmp;
+    if(x%50!=0||y%50!=0)
+        return NULL;
+    switch(movingdir){
+    case UP:
+        tmp=map->getTile(x/50,y/50-1);
+        if(tmp->gettype()==rdown||tmp->gettype()>7)
+            return tmp;
+        else
+            return NULL;
+    case DOWN:
+        tmp=map->getTile(x/50,y/50+1);
+        if(tmp->gettype()==rup||tmp->gettype()>7)
+            return tmp;
+        else
+            return NULL;
+    case LEFT:
+        tmp=map->getTile(x/50-1,y/50);
+        if(tmp->gettype()==rright||tmp->gettype()>7)
+            return tmp;
+        else
+            return NULL;
+    case UP:
+        tmp=map->getTile(x/50+1,y/50);
+        if(tmp->gettype()==rleft||tmp->gettype()>7)
+            return tmp;
+        else
+            return NULL;
+    default:
+        return NULL;
+    }
+}
+
 SJW::SJW(QWidget* parent,Map* _map,int _x,int _y,DIRECTION _dir,int num):Character(parent,_map,3,_x,_y){
     QPixmap * pixmap;
     switch(num){
