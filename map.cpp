@@ -133,16 +133,35 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     menu = new Menustrip(this, 1000, 1000, RC_STAGE1);
 
     message=new QLabel(this);
-    QPixmap pixmap(":/images/start_window.png");
-    message->setPixmap(pixmap);
+
+    button[0]=new QPushButton(this);
+    button[1]=new QPushButton(this);
+
+
+    QPixmap * pixmap = new QPixmap(":/images/start_window.png");
+    message->setPixmap(*pixmap);
+    delete pixmap;
+    pixmap=new QPixmap(":/images/gamestartbutton.png");
+    QIcon * ButtonIcon = new QIcon(*pixmap);
+    button[0]->setIcon(*ButtonIcon);
+    button[0]->setIconSize(pixmap->rect().size());
+    delete pixmap;
+    delete ButtonIcon;
+    pixmap=new QPixmap(":/images/howto_button.png");
+    ButtonIcon = new QIcon(*pixmap);
+    button[1]->setIcon(*ButtonIcon);
+    button[1]->setIconSize(pixmap->rect().size());
+
     this->setGeometry(0,0,740,515);
+
+
 
     placeObject();
     timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(moveall()));
     connect(me,SIGNAL(catched()),this,SLOT(caught()));
     connect(menu,SIGNAL(gameset()),this,SLOT(caught())); //game over.
-    story=-4;
+    story=-5;
     friendnum=0;
     stage=2;
     npcdialog=NULL;

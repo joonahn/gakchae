@@ -7,6 +7,8 @@
 #include <QKeyEvent>
 #include <QLabel>
 #include <QPixmap>
+#include <QPushButton>
+#include <QIcon>
 #include "character.h"
 #include "tile.h"
 #include "mainwindow.h"
@@ -43,6 +45,8 @@ private:
 
     QLabel * message;
 
+    QPushButton * button[2];
+
     //Stage Variable
     int stage;
 
@@ -68,9 +72,9 @@ public:
     Menustrip * getMenu();
     int getstory();
     void nextstory();
-    void reset();
 
 public slots:
+    void reset();
     void moveall();
     void caught();
     void resume();
