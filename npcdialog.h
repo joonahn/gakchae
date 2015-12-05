@@ -48,6 +48,7 @@ private:
 
 signals:
     void resumeGame();
+    void reset();
 
 public:
     //Constructor

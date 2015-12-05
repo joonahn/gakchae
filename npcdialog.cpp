@@ -458,6 +458,7 @@ Npcdialog::Npcdialog(QWidget *parent, Room *_room) : QLabel(parent)
 
     //Connect
     connect(this, SIGNAL(resumeGame()), map, SLOT(resume()));
+    connect(this, SIGNAL(reset()), map, SLOT(reset()));
 
     //typedef enum{INSOL1,INSOL2,INSOL3,FRIEND,EMPTY,TRAP}ROOMTYPE;
     if(room->isClosed())
@@ -498,17 +499,75 @@ Npcdialog::Npcdialog(QWidget *parent, Room *_room) : QLabel(parent)
 
 void Npcdialog::keyboardInput(QKeyEvent *event)
 {
-    switch(event->key())
+    if(unlocked)
     {
-    case Qt::Key_Escape:
-        closeDialog();
-        break;
-    case Qt::Key_Down:
-    case Qt::Key_Up:
-    case Qt::Key_Enter:
-    case Qt::Key_Backspace:
-    default:
-        event->ignore();
-        break;
+        switch(event->key())
+        {
+        case Qt::Key_Escape:
+        {
+            if(room->getroomtype()==TRAP)
+            {
+               //Reset when character entered to junwis' room
+               closeDialog();
+               emit reset();
+            }
+            else
+            {
+                closeDialog();
+            }
+            break;
+        }
+        case Qt::Key_Down:
+            dialogselectlabel[currentchoice]->setText(dialogselectlabel[currentchoice]->text().remove(0,1));
+            currentchoice = (currentchoice + 1) % nselect;
+            dialogselectlabel[currentchoice]->setText(QString("▶").append(dialogselectlabel[currentchoice]));
+        case Qt::Key_Up:
+        case Qt::Key_Enter:
+        case Qt::Key_Backspace:
+        default:
+            event->ignore();
+            break;
+        }
+    }
+    else
+    {
+        switch(event->key())
+        {
+        int inputnum = -1;
+        case Qt::Key_Escape:
+            closeDialog();
+            break;
+        case Qt::Key_0:
+            inputnum = 0;
+        case Qt::Key_1:
+            if(inputnum!=-1)inputnum = 1;
+        case Qt::Key_2:
+            if(inputnum!=-1)inputnum = 2;
+        case Qt::Key_3:
+            if(inputnum!=-1)inputnum = 3;
+        case Qt::Key_4:
+            if(inputnum!=-1)inputnum = 4;
+        case Qt::Key_5:
+            if(inputnum!=-1)inputnum = 5;
+        case Qt::Key_6:
+            if(inputnum!=-1)inputnum = 6;
+        case Qt::Key_7:
+            if(inputnum!=-1)inputnum = 7;
+        case Qt::Key_8:
+            if(inputnum!=-1)inputnum = 8;
+        case Qt::Key_9:
+            if(inputnum!=-1)inputnum = 9;
+            passwdDialogSelect(inputnum);
+            break;
+        case Qt::Key_Enter:
+            passwdDialogSelect(-2);
+            break;
+        case Qt::Key_Backspace:
+            passwdDialogSelect(-1);
+            break;
+        default:
+            event->ignore();
+            break;
+        }
     }
 }
