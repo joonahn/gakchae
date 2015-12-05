@@ -7,6 +7,8 @@
 #include <QKeyEvent>
 #include <QLabel>
 #include <QPixmap>
+#include <QPushButton>
+#include <QIcon>
 #include "character.h"
 #include "tile.h"
 #include "mainwindow.h"
@@ -43,17 +45,21 @@ private:
 
     QLabel * message;
 
+    QPushButton * button[2];
+
     //Stage Variable
     int stage;
 
     //insolzas' roomnum
     int insol[3];
 
-    //-4 for start, 0 for nothing, 1 for checking insol2, 2 for find insol1, 3 for clear insol2
+    //-5 for start, 0 for nothing, 1 for checking insol2, 2 for find insol1, 3 for clear insol2
     int story;
     int friendnum;
 
     int insol2pwd;
+
+    bool started;
 public:
     Map(QMainWindow * _mainwindow,QWidget *parent);
     Character * getCharacter();
@@ -68,12 +74,13 @@ public:
     Menustrip * getMenu();
     int getstory();
     void nextstory();
-    void reset();
 
 public slots:
+    void reset();
     void moveall();
     void caught();
     void resume();
+    void gamestart();
 signals:
 };
 
