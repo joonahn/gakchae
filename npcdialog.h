@@ -15,7 +15,9 @@ private:
     Room * room;
     int nselect;
     int currentindex;
+    int currentchoice;
     bool unlocked;
+
     QLabel * NPCname;
     QLabel * NPCimage;
     QLabel * dialoglabel;
