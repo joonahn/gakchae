@@ -258,6 +258,11 @@ void Map::changeStage()
     placeObject();
 }
 
+void Map::finishRC()
+{
+
+}
+
 void Map::keyboardInput(QKeyEvent *event)
 {
     if(npcdialog==NULL)
@@ -276,20 +281,22 @@ void Map::keyboardInput(QKeyEvent *event)
             me->changedir(DOWN);
             break;
         case Qt::Key_Space:
+        {
             Tile* tmp=me->getspacebar();
-            switch(tmp->gettype()){
-            case stairs:
+            if(tmp==NULL)
+                break;
+            if(tmp->gettype()==stairs)
                 changeStage();
-                break;
-            case door:
+            else if(tmp->gettype()==door){
                 if(story==3)
-                        finishRC();
-                break;
-            default:
+                    finishRC();
+            }
+            else{
                 timer->stop();
                 npcdialog=new Npcdialog(this,dynamic_cast<Room*>(tmp));
             }
             break;
+        }
         default:
             event->ignore();
             break;

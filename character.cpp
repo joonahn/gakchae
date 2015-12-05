@@ -119,7 +119,7 @@ Tile *Character::getspacebar()
             return tmp;
         else
             return NULL;
-    case UP:
+    case RIGHT:
         tmp=map->getTile(x/50+1,y/50);
         if(tmp->gettype()==rleft||tmp->gettype()>7)
             return tmp;
