@@ -9,6 +9,7 @@
 #include<QLabel>
 #include<cstdlib>
 #include"tile.h"
+#include"npcdialog.h"
 
 class Map;
 

@@ -136,8 +136,8 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(moveall()));
     timer->start(20);
-    connect(me,SIGNAL(catched()),this,SLOT(reset()));
-    connect(menu,SIGNAL(gameset()),this,SLOT(reset())); //game over.
+    connect(me,SIGNAL(catched()),this,SLOT(caught()));
+    connect(menu,SIGNAL(gameset()),this,SLOT(caught())); //game over.
     story=0;
     friendnum=0;
     stage=2;
@@ -328,6 +328,14 @@ void Map::moveall()
     me->move();
     me->check();
     placeObject();
+}
+
+void Map::caught()
+{
+    Room* tmp=new Room(this,this,rup,1,1,111,TRAP,0);
+    npcdialog=new Npcdialog(this,new tmp);
+    delete tmp;
+    reset();
 }
 
 void Map::reset()
