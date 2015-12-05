@@ -289,6 +289,7 @@ void Npcdialog::passwdDialog()
     QPixmap * pixmap;
     pixmap = new QPixmap(":/images/doorlock_back.png");
     this->setPixmap(*pixmap);
+    this->move(0,50);
     delete pixmap;
     NPCname->setVisible(false);
     NPCimage->setVisible(false);
@@ -330,6 +331,7 @@ void Npcdialog::passwdDialogSelect(int choice)
             {
                 unlocked = true;
                 //change UI
+                move(0,50);
                 for(int i = 0;i<4;i++)
                     inputpwlabel[i]->setVisible(false);
                 NPCname->setVisible(true);
@@ -380,6 +382,15 @@ void Npcdialog::closeDialog()
     emit resumeGame();
 }
 
+void Npcdialog::setLabelTextColor(QLabel *label)
+{
+    QFont font("맑은 고딕",15);
+    label->setFont(font);
+    QPalette palette = label->palette();
+    palette.setColor(label->foregroundRole(), Qt::white);
+    label->setPalette(palette);
+}
+
 
 Npcdialog::Npcdialog(QWidget *parent, Room *_room) : QLabel(parent)
 {
@@ -396,17 +407,17 @@ Npcdialog::Npcdialog(QWidget *parent, Room *_room) : QLabel(parent)
     inputpwlabel[3] = new QLabel(this);
 
     //Set Position of Label
-    setGeometry(0,0,740,515);
-    dialoglabel->setGeometry(0,0, 740,515);
-    NPCimage->move(50,65);
-    NPCname->move(45,330);
-    dialogtextlabel->move(45,370);
-    dialogselectlabel[0]->move(565,413);
-    dialogselectlabel[1]->move(565,455);
-    inputpwlabel[0]->move(248,448);
-    inputpwlabel[1]->move(320,448);
-    inputpwlabel[2]->move(390,448);
-    inputpwlabel[3]->move(460,448);
+    setGeometry(0,50,740,515);
+    dialoglabel->setGeometry(0,-70, 740,515);
+    NPCimage->setGeometry(50,65,300,300);
+    NPCname->setGeometry(45,260,300, 30);
+    dialogtextlabel->setGeometry(45,280,648,63);
+    dialogselectlabel[0]->setGeometry(450,350,262,26);
+    dialogselectlabel[1]->setGeometry(450,375,262,26);
+    inputpwlabel[0]->setGeometry(248,448,50,50);
+    inputpwlabel[1]->setGeometry(320,448,50,50);
+    inputpwlabel[2]->setGeometry(390,448,50,50);
+    inputpwlabel[3]->setGeometry(460,448,50,50);
 
     //Make it visible
     this->setVisible(true);
@@ -418,6 +429,11 @@ Npcdialog::Npcdialog(QWidget *parent, Room *_room) : QLabel(parent)
         dialogselectlabel[i]->setVisible(true);
 
     //Set Font & Font color
+    setLabelTextColor(NPCname);
+    setLabelTextColor(dialogtextlabel);
+    for(int i = 0;i<2;i++)
+        setLabelTextColor(dialogselectlabel[i]);
+
 
     //Set Inner variables
     room = _room;
