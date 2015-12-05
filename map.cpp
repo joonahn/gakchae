@@ -27,7 +27,7 @@ int rc2_mapdata[20][70]={
     { 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7 },
     { 7, 7, 7, 7, 7, 7, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 7, 7, 7, 1, 1, 1, 7, 7, 7, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 7, 7, 5, 5, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7 },
     { 7, 7, 7, 7, 7, 7, 4, 7, 7, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 7, 7, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 6, 6, 0, 0, 0, 7, 7, 7, 4, 7, 7, 5, 5, 0, 0, 0, 7, 7, 4, 7, 7, 5, 5, 7, 4, 4, 4, 4, 4, 4, 7, 7, 7 },
-    { 7, 7, 9, 7, 7, 7, 4, 7, 7, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 7, 7, 4, 7, 7, 7, 0, 0, 0, 7, 6, 6, 4, 6, 6, 6, 7, 7, 7, 7, 7, 4, 7, 7, 5, 5, 7, 7, 7, 7, 7, 4, 4, 4, 4, 4, 4, 4, 7, 7, 7, 7, 4, 7, 7, 7 },
+    { 7, 7, 8, 7, 7, 7, 4, 7, 7, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 7, 7, 4, 7, 7, 7, 0, 0, 0, 7, 6, 6, 4, 6, 6, 6, 7, 7, 7, 7, 7, 4, 7, 7, 5, 5, 7, 7, 7, 7, 7, 4, 4, 4, 4, 4, 4, 4, 7, 7, 7, 7, 4, 7, 7, 7 },
     { 7, 7, 4, 7, 7, 7, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 7, 5, 5, 7, 7, 4, 2, 7, 7, 7, 7, 7, 6, 6, 6, 4, 7, 6, 6, 6, 7, 7, 7, 3, 4, 2, 7, 5, 5, 7, 7, 7, 7, 7, 7, 7, 7, 5, 5, 7, 4, 2, 7, 7, 7, 4, 7, 7, 7 },
     { 7, 7, 4, 7, 7, 7, 4, 7, 7, 7, 7, 7, 5, 5, 7, 4, 7, 5, 5, 7, 4, 7, 5, 5, 7, 3, 4, 2, 7, 7, 7, 7, 6, 6, 6, 7, 4, 7, 7, 6, 6, 6, 7, 7, 3, 4, 2, 7, 5, 5, 7, 7, 7, 7, 7, 7, 7, 7, 5, 5, 3, 4, 2, 7, 7, 7, 4, 7, 7, 7 },
     { 7, 7, 4, 7, 7, 7, 4, 7, 7, 7, 7, 7, 5, 5, 3, 4, 2, 5, 5, 3, 4, 2, 5, 5, 7, 3, 4, 2, 7, 7, 7, 6, 6, 6, 7, 7, 4, 7, 7, 7, 6, 6, 6, 7, 7, 4, 7, 7, 5, 5, 7, 7, 7, 7, 7, 7, 7, 7, 5, 5, 3, 4, 2, 7, 7, 7, 4, 7, 7, 7 },
@@ -39,7 +39,7 @@ int rc2_mapdata[20][70]={
     { 7, 7, 4, 4, 4, 4, 4, 7, 1, 1, 7, 4, 5, 5, 7, 7, 7, 5, 5, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 7, 7, 7, 7, 7, 6, 6, 7, 7, 7, 7, 7, 7, 7, 4, 2, 7, 7, 7, 7, 7, 5, 5, 7, 7, 7, 7, 7, 7, 5, 5, 4, 2, 7, 7, 4, 7, 7, 7 },
     { 7, 7, 7, 7, 4, 7, 4, 4, 4, 4, 4, 4, 5, 5, 7, 7, 7, 5, 5, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 4, 7, 7, 7, 7, 7, 6, 6, 7, 7, 7, 7, 7, 7, 7, 4, 2, 7, 7, 7, 7, 7, 5, 5, 7, 7, 7, 7, 7, 7, 5, 5, 4, 2, 7, 7, 4, 7, 7, 7 },
     { 7, 7, 7, 7, 4, 7, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 7, 7, 7, 7, 4, 7, 7, 7, 7, 7, 6, 6, 7, 7, 7, 7, 7, 7, 7, 4, 2, 7, 7, 7, 7, 7, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 2, 7, 7, 4, 7, 7, 7 },
-    { 7, 7, 7, 7, 4, 7, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 7, 7, 7, 7, 4, 7, 1, 1, 1, 7, 6, 6, 7, 7, 1, 1, 1, 7, 7, 4, 7, 7, 7, 7, 7, 7, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 7, 7, 7, 8, 7, 7, 7 },
+    { 7, 7, 7, 7, 4, 7, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 7, 7, 7, 7, 4, 7, 1, 1, 1, 7, 6, 6, 7, 7, 1, 1, 1, 7, 7, 4, 7, 7, 7, 7, 7, 7, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 7, 7, 7, 9, 7, 7, 7 },
     { 7, 7, 7, 7, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 7, 7, 1, 1, 1, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 4, 7, 7, 7, 7, 7, 7, 7 },
     { 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 7, 7, 7, 7, 7, 7, 7 },
     { 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 0, 0, 0, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7 },
@@ -82,13 +82,19 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
             if(rc1_mapdata[i][j]<4){
                 if(floor2==insol[0])
                     mapData[i][j]=new Room(this,this,static_cast<TileType>(rc1_mapdata[i][j]),j,i,floor2++,INSOL1,0);
-                if(floor2==insol[1])
+                else if(floor2==insol[1])
                     mapData[i][j]=new Room(this,this,static_cast<TileType>(rc1_mapdata[i][j]),j,i,floor2++,INSOL2,insol2pwd);
-                if(floor2==insol[2])
+                else if(floor2==insol[2])
                     mapData[i][j]=new Room(this,this,static_cast<TileType>(rc1_mapdata[i][j]),j,i,floor2++,INSOL3,0);
                 else{
-                    int k=rand()%3+3;
+                    int k;
                     if(rand()%2==0)
+                        k=3;
+                    else if(rand()%2==0)
+                        k=4;
+                    else
+                        k=5;
+                    if(rand()%4==0)
                         mapData[i][j]=new Room(this,this,static_cast<TileType>(rc1_mapdata[i][j]),j,i,floor2++,static_cast<ROOMTYPE>(k),rand()%9000+1000);
                     else
                         mapData[i][j]=new Room(this,this,static_cast<TileType>(rc1_mapdata[i][j]),j,i,floor2++,static_cast<ROOMTYPE>(k),0);
@@ -99,13 +105,19 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
             if(rc2_mapdata[i][j]<4){
                 if(floor1==insol[0])
                     mapData2[i][j]=new Room(this,this,static_cast<TileType>(rc2_mapdata[i][j]),j,i,floor1++,INSOL1,0);
-                if(floor1==insol[1])
+                else if(floor1==insol[1])
                     mapData2[i][j]=new Room(this,this,static_cast<TileType>(rc2_mapdata[i][j]),j,i,floor1++,INSOL2,insol2pwd);
-                if(floor1==insol[2])
+                else if(floor1==insol[2])
                     mapData2[i][j]=new Room(this,this,static_cast<TileType>(rc2_mapdata[i][j]),j,i,floor1++,INSOL3,0);
                 else{
-                    int k=rand()%3+3;
+                    int k;
                     if(rand()%2==0)
+                        k=3;
+                    else if(rand()%2==0)
+                        k=4;
+                    else
+                        k=5;
+                    if(rand()%4==0)
                         mapData2[i][j]=new Room(this,this,static_cast<TileType>(rc2_mapdata[i][j]),j,i,floor1++,static_cast<ROOMTYPE>(k),rand()%9000+1000);
                     else
                         mapData2[i][j]=new Room(this,this,static_cast<TileType>(rc2_mapdata[i][j]),j,i,floor1++,static_cast<ROOMTYPE>(k),0);
@@ -256,7 +268,7 @@ void Map::changeStage()
     }
     else{
         stage=2;
-        menu->setStage(1);
+        menu->setStage(0);
         for(int i=0;i<20;i++)
             for(int j=0;j<70;j++){
                 mapData2[i][j]->setVisible(false);
@@ -395,10 +407,9 @@ void Map::moveall()
 
 void Map::caught()
 {
+    reset();
     Room* tmp=new Room(this,this,rup,1,1,111,TRAP,0);
     npcdialog=new Npcdialog(this,tmp);
-    delete tmp;
-    reset();
 }
 
 void Map::reset()
@@ -431,7 +442,7 @@ void Map::reset()
     junwis[5]->setx(3050);
     junwis[5]->changedir(RIGHT);
     stage=2;
-    menu->setStage(2);
+    menu->setStage(0);
 }
 
 void Map::resume()

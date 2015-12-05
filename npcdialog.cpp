@@ -544,7 +544,7 @@ void Npcdialog::keyboardInput(QKeyEvent *event)
             {
                 emptyDialogSelect();
             }
-            else if(roomtype == TRAP)
+            else if(roomtype == TRAP || roomtype == INSOL3)
             {
                 trapDialogSelect();
             }
