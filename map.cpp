@@ -91,7 +91,7 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
                     if(rand()%2==0)
                         mapData[i][j]=new Room(this,this,static_cast<TileType>(rc1_mapdata[i][j]),j,i,floor2++,static_cast<ROOMTYPE>(k),rand()%9000+1000);
                     else
-                        mapData[i][j]=new Room(this,this,static_cast<TileType>(rc1_mapdata[i][j]),j,i,floor2++,static_cast<ROOMTYPE>(k),rand()%9000+1000);
+                        mapData[i][j]=new Room(this,this,static_cast<TileType>(rc1_mapdata[i][j]),j,i,floor2++,static_cast<ROOMTYPE>(k),0);
                 }
             }
             else
@@ -108,7 +108,7 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
                     if(rand()%2==0)
                         mapData2[i][j]=new Room(this,this,static_cast<TileType>(rc2_mapdata[i][j]),j,i,floor1++,static_cast<ROOMTYPE>(k),rand()%9000+1000);
                     else
-                        mapData2[i][j]=new Room(this,this,static_cast<TileType>(rc2_mapdata[i][j]),j,i,floor1++,static_cast<ROOMTYPE>(k),rand()%9000+1000);
+                        mapData2[i][j]=new Room(this,this,static_cast<TileType>(rc2_mapdata[i][j]),j,i,floor1++,static_cast<ROOMTYPE>(k),0);
                 }
             }
             else
