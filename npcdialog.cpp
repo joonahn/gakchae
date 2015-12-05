@@ -326,6 +326,7 @@ void Npcdialog::passwdDialogSelect(int choice)
         {
             if(room->open() == inputpw.toInt())
             {
+                unlocked = true;
                 //change UI
                 for(int i = 0;i<4;i++)
                     inputpwlabel[i]->setVisible(false);
@@ -415,8 +416,8 @@ Npcdialog::Npcdialog(QWidget *parent, Room *_room) : QLabel(parent)
         dialogselectlabel[i]->setVisible(true);
 
     //Set Inner variables
-    unlocked = room->isClosed();
     room = _room;
+    unlocked = room->isClosed();
     map = dynamic_cast<Map*>(parent);
 
     //Connect
