@@ -55,7 +55,7 @@ public:
     Npcdialog(QWidget * parent, Room * _room);
 
     //Keyboard Input Method
-    void keyboardInput(QKeyEvent * event);
+    void keyPressEvent(QKeyEvent * event);
 
     //Place UI *** need to be called when dialog, select text changed ***
     void refreshUI();

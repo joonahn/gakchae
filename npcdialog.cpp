@@ -497,9 +497,10 @@ Npcdialog::Npcdialog(QWidget *parent, Room *_room) : QLabel(parent)
             break;
         }
     }
+    this->setFocus();
 }
 
-void Npcdialog::keyboardInput(QKeyEvent *event)
+void Npcdialog::keyPressEvent(QKeyEvent *event)
 {
     if(unlocked)
     {

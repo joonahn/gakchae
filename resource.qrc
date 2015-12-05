@@ -51,5 +51,27 @@
         <file>howtomini.png</file>
         <file>howtotaxi.png</file>
         <file>highscore.png</file>
+        <file>bar_gray.png</file>
+        <file>bar_red.png</file>
+        <file>building1.png</file>
+        <file>building2.png</file>
+        <file>building3.png</file>
+        <file>bullet.png</file>
+        <file>c5.png</file>
+        <file>chungam.png</file>
+        <file>elementary.png</file>
+        <file>floor2_1.png</file>
+        <file>floor2_2.png</file>
+        <file>floor2_3.png</file>
+        <file>floor2_4.png</file>
+        <file>light.png</file>
+        <file>rc.png</file>
+        <file>realtaxi.png</file>
+        <file>robot.png</file>
+        <file>taxi.png</file>
+        <file>taxi_background.png</file>
+        <file>taxiending.png</file>
+        <file>taxiinfo.png</file>
+        <file>taxistop.png</file>
     </qresource>
 </RCC>

@@ -16,6 +16,7 @@
 #include "mapdata.h"
 #include "menustrip.h"
 #include "npcdialog.h"
+#include "game.h"
 
 enum stage{RC_STAGE1, RC_STAGE2, HYOJA_MARKET};
 
