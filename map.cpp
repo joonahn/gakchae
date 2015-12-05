@@ -133,7 +133,7 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     menu = new Menustrip(this, 1000, 1000, RC_STAGE1);
 
     message=new QLabel(this);
-    QPixmap pixmap(":/images/intro1.png");
+    QPixmap pixmap(":/images/start_window.png");
     message->setPixmap(pixmap);
     this->setGeometry(0,0,740,515);
 
@@ -343,12 +343,10 @@ int Map::getPasswd()
     return insol2pwd;
 }
 
-
 Menustrip *Map::getMenu()
 {
     return menu;
 }
-
 
 int Map::getstory()
 {
@@ -359,7 +357,6 @@ void Map::nextstory()
 {
     story++;
 }
-
 
 void Map::moveall()
 {
