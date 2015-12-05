@@ -3,7 +3,7 @@
 
 #include "tile.h"
 
-class map;
+class Map;
 
 //typedef enum{INSOL1,INSOL2,INSOL3,FRIEND,EMPTY,TRAP}ROOMTYPE;
 
