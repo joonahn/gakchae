@@ -1,4 +1,5 @@
 #include "npcdialog.h"
+#include "map.h"
 
 void Npcdialog::insol1Dialog(int index)
 {
@@ -154,7 +155,7 @@ void Npcdialog::insol2DialogSelect(int index, int choice)
 
 void Npcdialog::friendDialog(int index)
 {
-
+    QPixmap * pixmap;
     if(index==1)
     {
         pixmap = new QPixmap(":/images/darkroom.png");
@@ -239,6 +240,7 @@ void Npcdialog::friendDialogSelect(int index, int choice)
 
 void Npcdialog::emptyDialog()
 {
+    QPixmap * pixmap;
     pixmap = new QPixmap(":/images/darkroom.png");
     this->setPixmap(*pixmap);
     delete pixmap;
@@ -258,7 +260,8 @@ void Npcdialog::emptyDialogSelect()
 
 void Npcdialog::trapDialog()
 {
-    pixmap = new QPixmap(":/images/darkroom.png");
+    QPixmap * pixmap;
+    pixmap = new QPixmap(":/images/room.png");
     this->setPixmap(*pixmap);
     delete pixmap;
     pixmap = new QPixmap(":/images/redfriend.png");
@@ -279,6 +282,101 @@ void Npcdialog::trapDialogSelect()
     closeDialog();
 }
 
+void Npcdialog::passwdDialog()
+{
+    QPixmap * pixmap;
+    pixmap = new QPixmap(":/images/doorlock_back.png");
+    this->setPixmap(*pixmap);
+    delete pixmap;
+    NPCname->setVisible(false);
+    NPCimage->setVisible(false);
+    dialoglabel->setVisible(false);
+    dialogtextlabel->setVisible(false);
+    for(int i = 0;i<2;i++)
+        dialogselectlabel[i]->setVisible(false);
+}
+
+void Npcdialog::passwdDialogSelect(int choice)
+{
+    /*Non-Exceptional case, choice : number, backspace, enter
+    **choice : backspace : -1, enter : -2
+    **ESC : -3  */
+    if(choice >=0 && choice <=9)
+    {
+        //Key Input
+        if(inputpw.length()>=4)
+        {
+            return;
+        }
+        else
+        {
+            inputpw.append((const char)('0' + choice));
+        }
+    }
+    else if (choice == -1)
+    {
+        //Backspace
+        if(inputpw.length()>0)
+            inputpw.remove(inputpw.length()-1,1);
+    }
+    else if(choice == -2)
+    {
+        //Enter key : OK
+        if(inputpw.length()==4)
+        {
+            if(room->open() == inputpw.toInt())
+            {
+                //change UI
+                for(int i = 0;i<4;i++)
+                    inputpwlabel[i]->setVisible(false);
+                NPCname->setVisible(true);
+                NPCimage->setVisible(true);
+                dialoglabel->setVisible(true);
+                dialogtextlabel->setVisible(true);
+                for(int i = 0;i<2;i++)
+                    dialogselectlabel[i]->setVisible(true);
+
+                //Call proper UI Function
+                switch(room->getroomtype())
+                {
+                case INSOL1:
+                    insol1Dialog(1);
+                    break;
+                case INSOL2:
+                    insol2DIalog(1);
+                    break;
+                case INSOL3:
+                    trapDialog();
+                    break;
+                case FRIEND:
+                {
+                    if((room->getfriend()->friendtype)==0)
+                        friendDialog(1);
+                    else
+                        friendDialog(2);
+                    break;
+                }
+                case TRAP:
+                    trapDialog();
+                    break;
+                case EMPTY:
+                    emptyDialog();
+                    break;
+                }
+            }
+        }
+    }
+    else if (choice == -3)
+    {
+        closeDialog();
+    }
+}
+
+void Npcdialog::closeDialog()
+{
+    emit resumeGame();
+}
+
 
 Npcdialog::Npcdialog(QWidget *parent, Room *_room) : QLabel(parent)
 {
@@ -289,6 +387,10 @@ Npcdialog::Npcdialog(QWidget *parent, Room *_room) : QLabel(parent)
     dialogtextlabel = new QLabel(this);
     dialogselectlabel[0] = new QLabel(this);
     dialogselectlabel[1] = new QLabel(this);
+    inputpwlabel[0] = new QLabel(this);
+    inputpwlabel[1] = new QLabel(this);
+    inputpwlabel[2] = new QLabel(this);
+    inputpwlabel[3] = new QLabel(this);
 
     //Set Position of Label
     dialoglabel->move(0,0);
@@ -297,30 +399,51 @@ Npcdialog::Npcdialog(QWidget *parent, Room *_room) : QLabel(parent)
     dialogtextlabel->move(45,370);
     dialogselectlabel[0]->move(565,413);
     dialogselectlabel[1]->move(565,455);
+    inputpwlabel[0]->move(248,448);
+    inputpwlabel[1]->move(320,448);
+    inputpwlabel[2]->move(390,448);
+    inputpwlabel[3]->move(460,448);
 
     //Set Inner variables
     room = _room;
-    locked = room->isClosed();
     map = dynamic_cast<Map*>(parent);
 
+    //Connect
+    connect(this, SIGNAL(resumeGame()), map, SLOT(resume()));
+
     //typedef enum{INSOL1,INSOL2,INSOL3,FRIEND,EMPTY,TRAP}ROOMTYPE;
-    ROOMTYPE roomtype = room->getroomtype();
-    QPixmap * pixmap;
-    switch(roomtype)
+    if(room->isClosed())
     {
-    case INSOL1:
-        pixmap = new QPixmap(":/images/room.png");
-        this->setPixmap(*pixmap);
-        delete pixmap;
-        pixmap = new QPixmap(":/images/insolja.png");
-        NPCimage->setPixmap(*pixmap);
-        delete pixmap;
-        pixmap = new QPixmap(":/images/blacksquare.png");
-        dialoglabel->setPixmap(*pixmap);
-        delete pixmap;
-        dialogtextlabel->setText("안녕! 제대로 찾아왔군, 내가 팔이 짧아서 그런데 침대 뒤에 떨어진 내 레포트를 찾아주지 않을래?\n내가 침대를 당길게");
-        dialogselectlabel[0]->setText("네 당연하죠!");
-        dialogselectlabel[1]->setText("(내키지는 않지만)네...");
-        break;
+        passwdDialog();
+    }
+    else
+    {
+        ROOMTYPE roomtype = room->getroomtype();
+        switch(roomtype)
+        {
+        case INSOL1:
+            insol1Dialog(1);
+            break;
+        case INSOL2:
+            insol2DIalog(1);
+            break;
+        case INSOL3:
+            trapDialog();
+            break;
+        case FRIEND:
+        {
+            if((room->getfriend()->friendtype)==0)
+                friendDialog(1);
+            else
+                friendDialog(2);
+            break;
+        }
+        case TRAP:
+            trapDialog();
+            break;
+        case EMPTY:
+            emptyDialog();
+            break;
+        }
     }
 }
