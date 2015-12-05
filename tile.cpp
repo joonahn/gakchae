@@ -113,7 +113,7 @@ Room::Room(QWidget *parent, Map *_map, TileType _type, int _x, int _y, int _room
     if(rtype==FRIEND){
         myfriend=new FRIENDS;
         myfriend->friendtype=rand()%3;
-        myfriend->money=rand()%4*1000;
+        myfriend->money=rand()%40*100;
         if(passwd!=0)
             myfriend->money+=10000;
     }

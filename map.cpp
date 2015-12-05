@@ -91,7 +91,7 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
                     if(rand()%2==0)
                         mapData[i][j]=new Room(this,this,static_cast<TileType>(rc1_mapdata[i][j]),j,i,floor2++,static_cast<ROOMTYPE>(k),rand()%9000+1000);
                     else
-                        mapData[i][j]=new Room(this,this,static_cast<TileType>(rc1_mapdata[i][j]),j,i,floor2++,static_cast<ROOMTYPE>(k),rand()%9000+1000);
+                        mapData[i][j]=new Room(this,this,static_cast<TileType>(rc1_mapdata[i][j]),j,i,floor2++,static_cast<ROOMTYPE>(k),0);
                 }
             }
             else
@@ -108,7 +108,7 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
                     if(rand()%2==0)
                         mapData2[i][j]=new Room(this,this,static_cast<TileType>(rc2_mapdata[i][j]),j,i,floor1++,static_cast<ROOMTYPE>(k),rand()%9000+1000);
                     else
-                        mapData2[i][j]=new Room(this,this,static_cast<TileType>(rc2_mapdata[i][j]),j,i,floor1++,static_cast<ROOMTYPE>(k),rand()%9000+1000);
+                        mapData2[i][j]=new Room(this,this,static_cast<TileType>(rc2_mapdata[i][j]),j,i,floor1++,static_cast<ROOMTYPE>(k),0);
                 }
             }
             else
@@ -136,8 +136,8 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(moveall()));
     timer->start(20);
-    connect(me,SIGNAL(catched()),this,SLOT(reset()));
-    connect(menu,SIGNAL(gameset()),this,SLOT(reset())); //game over.
+    connect(me,SIGNAL(catched()),this,SLOT(caught()));
+    connect(menu,SIGNAL(gameset()),this,SLOT(caught())); //game over.
     story=0;
     friendnum=0;
     stage=2;
@@ -335,6 +335,14 @@ void Map::moveall()
     me->move();
     me->check();
     placeObject();
+}
+
+void Map::caught()
+{
+    Room* tmp=new Room(this,this,rup,1,1,111,TRAP,0);
+    npcdialog=new Npcdialog(this,tmp);
+    delete tmp;
+    reset();
 }
 
 void Map::reset()

@@ -64,10 +64,11 @@ public:
     Menustrip * getMenu();
     int getstory();
     void nextstory();
+    void reset();
 
 public slots:
     void moveall();
-    void reset();
+    void caught();
     void resume();
 signals:
 };
