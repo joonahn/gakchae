@@ -293,7 +293,7 @@ void Npcdialog::trapDialog()
 
 void Npcdialog::trapDialogSelect()
 {
-    map->reset();
+    emit reset();
     closeDialog();
 }
 
@@ -432,10 +432,10 @@ Npcdialog::Npcdialog(QWidget *parent, Room *_room) : QLabel(parent)
     dialogtextlabel->setGeometry(45,280,648,63);
     dialogselectlabel[0]->setGeometry(450,350,262,26);
     dialogselectlabel[1]->setGeometry(450,375,262,26);
-    inputpwlabel[0]->setGeometry(248,448,50,50);
-    inputpwlabel[1]->setGeometry(320,448,50,50);
-    inputpwlabel[2]->setGeometry(390,448,50,50);
-    inputpwlabel[3]->setGeometry(460,448,50,50);
+    inputpwlabel[0]->setGeometry(248,408,50,50);
+    inputpwlabel[1]->setGeometry(320,408,50,50);
+    inputpwlabel[2]->setGeometry(390,408,50,50);
+    inputpwlabel[3]->setGeometry(460,408,50,50);
 
     //Make it visible
     this->setVisible(true);
