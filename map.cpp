@@ -132,13 +132,17 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     //MenuStrip Init
     menu = new Menustrip(this, 1000, 1000, RC_STAGE1);
 
+    message=new QLabel(this);
+    QPixmap pixmap(":/images/intro1.png");
+    message->setPixmap(pixmap);
+    this->setGeometry(0,0,740,515);
+
     placeObject();
     timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(moveall()));
-    timer->start(20);
     connect(me,SIGNAL(catched()),this,SLOT(caught()));
     connect(menu,SIGNAL(gameset()),this,SLOT(caught())); //game over.
-    story=0;
+    story=-4;
     friendnum=0;
     stage=2;
     npcdialog=NULL;
@@ -200,6 +204,7 @@ SJW *Map::getJunwi(int index)
 void Map::changeStage()
 {
     if(stage==2){
+        menu->setStage(1);
         stage=1;
         for(int i=0;i<20;i++)
             for(int j=0;j<70;j++){
@@ -229,6 +234,7 @@ void Map::changeStage()
     }
     else{
         stage=2;
+        menu->setStage(1);
         for(int i=0;i<20;i++)
             for(int j=0;j<70;j++){
                 mapData2[i][j]->setVisible(false);
@@ -265,7 +271,34 @@ void Map::finishRC()
 
 void Map::keyboardInput(QKeyEvent *event)
 {
-    if(npcdialog==NULL)
+    if(story<0){
+        if(event->key()==Qt::Key_Space){
+            story++;
+            if(story<0){
+                QPixmap * pixmap;
+                switch(story){
+                case -3:
+                    pixmap=new QPixmap(":/images/intro2.png");
+                    break;
+                case -2:
+                    pixmap=new QPixmap(":/images/intro3.png");
+                    break;
+                case -1:
+                    pixmap=new QPixmap(":/images/intro4.png");
+                    break;
+                }
+                message->setPixmap(*pixmap);
+                delete pixmap;
+            }
+            else{
+                message->setVisible(false);
+                timer->start(20);
+            }
+        }
+        else
+            event->ignore();
+    }
+    else if(npcdialog==NULL)
         switch(event->key())
         {
         case Qt::Key_Left:
@@ -375,6 +408,7 @@ void Map::reset()
     junwis[5]->setx(3050);
     junwis[5]->changedir(RIGHT);
     stage=2;
+    menu->setStage(2);
 }
 
 void Map::resume()

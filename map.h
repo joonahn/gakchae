@@ -5,6 +5,8 @@
 #include <QWidget>
 #include <QTimer>
 #include <QKeyEvent>
+#include <QLabel>
+#include <QPixmap>
 #include "character.h"
 #include "tile.h"
 #include "mainwindow.h"
@@ -39,13 +41,15 @@ private:
     //Frame move Timer
     QTimer * timer;
 
+    QLabel * message;
+
     //Stage Variable
     int stage;
 
     //insolzas' roomnum
     int insol[3];
 
-    //0 for nothing, 1 for checking insol2, 2 for find insol1, 3 for clear insol2
+    //-4 for start, 0 for nothing, 1 for checking insol2, 2 for find insol1, 3 for clear insol2
     int story;
     int friendnum;
 

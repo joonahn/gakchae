@@ -43,5 +43,9 @@
         <file>redfriend.png</file>
         <file>darkroom.png</file>
         <file>doorlock_back.png</file>
+        <file>intro1.png</file>
+        <file>intro2.png</file>
+        <file>intro3.png</file>
+        <file>intro4.png</file>
     </qresource>
 </RCC>
