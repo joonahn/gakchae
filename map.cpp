@@ -340,7 +340,7 @@ void Map::moveall()
 void Map::caught()
 {
     Room* tmp=new Room(this,this,rup,1,1,111,TRAP,0);
-    npcdialog=new Npcdialog(this,new tmp);
+    npcdialog=new Npcdialog(this,tmp);
     delete tmp;
     reset();
 }
