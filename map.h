@@ -61,6 +61,7 @@ public:
     void placeObject();
     void keyboardInput(QKeyEvent * event);
     int getPasswd();
+    Menustrip * getMenu();
     int getstory();
     void nextstory();
 

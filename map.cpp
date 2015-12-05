@@ -303,6 +303,13 @@ int Map::getPasswd()
     return insol2pwd;
 }
 
+
+Menustrip *Map::getMenu()
+{
+    return menu;
+}
+
+
 int Map::getstory()
 {
     return story;

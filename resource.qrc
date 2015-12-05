@@ -28,7 +28,6 @@
         <file>button8.png</file>
         <file>button9.png</file>
         <file>buttonback.png</file>
-        <file>doorlock_back.png</file>
         <file>menustrip.png</file>
         <file>rc_1st_floor.png</file>
         <file>rc_2nd_floor.png</file>
@@ -37,5 +36,12 @@
         <file>saejunwee2.png</file>
         <file>saejunwee3.png</file>
         <file>insolja2.png</file>
+        <file>bluefriend.png</file>
+        <file>greenfriend.png</file>
+        <file>maincharacter.png</file>
+        <file>purplefriend.png</file>
+        <file>redfriend.png</file>
+        <file>darkroom.png</file>
+        <file>doorlock_back.png</file>
     </qresource>
 </RCC>
