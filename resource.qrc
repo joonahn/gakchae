@@ -47,5 +47,9 @@
         <file>intro2.png</file>
         <file>intro3.png</file>
         <file>intro4.png</file>
+        <file>howtogame.png</file>
+        <file>howtomini.png</file>
+        <file>howtotaxi.png</file>
+        <file>highscore.png</file>
     </qresource>
 </RCC>
