@@ -49,6 +49,8 @@ private:
 
     Message * message;
 
+
+
     //Stage Variable
     int stage;
 

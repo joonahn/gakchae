@@ -1,4 +1,4 @@
-#include "minigame.h"
+﻿#include "minigame.h"
 #include <QMediaPlayer>
 #include <QGraphicsTextItem>
  
@@ -36,7 +36,8 @@ Game::Game(QWidget *parent)
         hand->setFlag(QGraphicsItem::ItemIsFocusable);
         hand->setFocus();
 
-        show();
+        //show();
+        this->setVisible(true);
 }
 
 
