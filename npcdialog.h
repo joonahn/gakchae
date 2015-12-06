@@ -34,6 +34,7 @@ private:
     void insol2DialogSelect(int index, int choice);
     void friendDialog(int index);
     void friendDialogSelect(int index, int choice);
+
     //EmptyDialogSelect, TrapDialogSelect : called if any key was pressed
     void emptyDialog();
     void emptyDialogSelect();
