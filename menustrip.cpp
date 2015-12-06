@@ -96,6 +96,6 @@ void Menustrip::decreaseTime()
 {
     time--;
     refreshText();
-    if(time==0)
+    if(time<0)
         emit gameset();
 }

@@ -1,8 +1,9 @@
 #include "building.h"
 #include "taxi.h"
 #include "game.h"
+#include <typeinfo>
 
-extern Game *game;
+/*extern*/ Game *game;
 
 
 void Building::draw(int xposi,int yposi,QString s,double scale)

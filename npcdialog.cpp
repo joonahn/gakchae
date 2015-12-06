@@ -695,3 +695,8 @@ void Npcdialog::keyPressEvent(QKeyEvent *event)
         }
     }
 }
+
+bool Npcdialog::isTrap()
+{
+    return room->getroomtype()==TRAP&&room->open()==0;
+}

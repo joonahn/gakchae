@@ -4,10 +4,10 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui\
+            multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
 TARGET = gakchae
 TEMPLATE = app
 
@@ -34,7 +34,8 @@ SOURCES += main.cpp\
     money.cpp \
     summoner.cpp \
     taxi.cpp \
-    taxi_distance.cpp
+    taxi_distance.cpp \
+    message.cpp
 
 HEADERS  += mainwindow.h \
     tile.h \
@@ -58,7 +59,8 @@ HEADERS  += mainwindow.h \
     money.h \
     summoner.h \
     taxi.h \
-    taxi_distance.h
+    taxi_distance.h \
+    message.h
 
 FORMS    += mainwindow.ui
 
