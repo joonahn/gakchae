@@ -1,4 +1,4 @@
-#ifndef NPCDIALOG_H
+﻿#ifndef NPCDIALOG_H
 #define NPCDIALOG_H
 
 #include "tile.h"

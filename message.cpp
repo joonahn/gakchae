@@ -1,4 +1,4 @@
-#include "message.h"
+﻿#include "message.h"
 
 
 Message::Message(QWidget *parent, int _type):QLabel(parent),type(_type)
@@ -38,7 +38,7 @@ Message::Message(QWidget *parent, int _type):QLabel(parent),type(_type)
     case 1:
         pixmap=new QPixmap(":/images/blacksquare.png");
         label=new QLabel(this);
-        label->setText("잡혀버렸다... 조금 기다렸다가 다시 나가야겠다.");
+        label->setText(QString::fromLocal8Bit("잡혀버렸다... 조금 기다렸다가 다시 나가야겠다."));
         label->setGeometry(45,320,648,63);
         label->setVisible(true);
         font=new QFont("맑은 고딕",15);
@@ -52,7 +52,7 @@ Message::Message(QWidget *parent, int _type):QLabel(parent),type(_type)
     case 2:
         pixmap=new QPixmap(":/images/blacksquare.png");
         label=new QLabel(this);
-        label->setText("문이 잠겨있다. 아무래도 인솔자를 찾아가야겠다.");
+        label->setText(QString::fromLocal8Bit("문이 잠겨있다. 아무래도 인솔자를 찾아가야겠다."));
         label->setGeometry(45,320,648,63);
         label->setVisible(true);
         font=new QFont("맑은 고딕",15);

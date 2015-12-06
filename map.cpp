@@ -48,8 +48,6 @@ int rc2_mapdata[20][70]={
 
 };
 
-class Game * game;
-
 Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
 {
     int floor2=201,floor1=101;
