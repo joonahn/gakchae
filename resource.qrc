@@ -73,5 +73,6 @@
         <file>taxiending.png</file>
         <file>taxiinfo.png</file>
         <file>taxistop.png</file>
+        <file>bigjunwi.png</file>
     </qresource>
 </RCC>

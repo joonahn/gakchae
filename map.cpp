@@ -71,6 +71,8 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
         if(insol[2]>257)
             insol[2]++;
     }
+    for(int i = 0;i<3;i++)
+        qDebug(QString::number(insol[i]).toStdString().c_str());
     insol2pwd=rand()%9000+1000;
     //Initialize & Load RC1 stage
     mainwindow = dynamic_cast<Ui::MainWindow*>(_mainwindow);
@@ -127,8 +129,6 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
                 mapData2[i][j] = new Tile(this, this, static_cast<TileType>(rc2_mapdata[i][j]), j, i);
             mapData2[i][j]->setVisible(false);
         }
-
-
 
     //in pixel coordination
     me = new Character(this,this,5,350,750);
@@ -403,6 +403,7 @@ int Map::getstory()
 void Map::nextstory()
 {
     story++;
+    qDebug(QString::number(story).toStdString().c_str());
 }
 
 void Map::moveall()
