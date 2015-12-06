@@ -157,13 +157,16 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     QIcon * ButtonIcon = new QIcon(*pixmap);
     button[0]->setIcon(*ButtonIcon);
     button[0]->setIconSize(pixmap->rect().size());
+    button[0]->move(245,250);
     delete pixmap;
     delete ButtonIcon;
     pixmap=new QPixmap(":/images/howto_button.png");
     ButtonIcon = new QIcon(*pixmap);
     button[1]->setIcon(*ButtonIcon);
     button[1]->setIconSize(pixmap->rect().size());
-    button[1]->move(500,500);
+    button[1]->move(245,350);
+    delete pixmap;
+    delete ButtonIcon;
 
     this->setGeometry(0,0,740,515);
 
@@ -300,6 +303,14 @@ void Map::changeStage()
 
 void Map::finishRC()
 {
+    for(int i=0;i<20;i++)
+        for(int j=0;j<70;j++){
+            delete mapData[i][j];
+            delete mapData2[i][j];
+        }
+    for(int i=0;i<6;i++)
+        delete junwi[i];
+    delete me;
 
 }
 
@@ -333,7 +344,7 @@ void Map::keyboardInput(QKeyEvent *event)
             else
                 event->ignore();
         }
-        else if(npcdialog==NULL)
+        else
             switch(event->key())
             {
             case Qt::Key_Left:
@@ -369,8 +380,6 @@ void Map::keyboardInput(QKeyEvent *event)
                 event->ignore();
                 break;
             }
-        else
-            npcdialog->keyboardInput(event);
         }
         else
             event->ignore();

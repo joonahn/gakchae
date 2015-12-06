@@ -18,7 +18,23 @@ SOURCES += main.cpp\
     tile.cpp \
     map.cpp \
     menustrip.cpp \
-    npcdialog.cpp
+    npcdialog.cpp \
+    building.cpp \
+    building2floor.cpp \
+    bullet.cpp \
+    color_bar.cpp \
+    ending.cpp \
+    game.cpp \
+    gameinfo.cpp \
+    gameover1.cpp \
+    gameover2.cpp \
+    gray_bar.cpp \
+    light.cpp \
+    mini_image.cpp \
+    money.cpp \
+    summoner.cpp \
+    taxi.cpp \
+    taxi_distance.cpp
 
 HEADERS  += mainwindow.h \
     tile.h \
@@ -26,7 +42,23 @@ HEADERS  += mainwindow.h \
     map.h \
     mapdata.h \
     menustrip.h \
-    npcdialog.h
+    npcdialog.h \
+    building.h \
+    building2floor.h \
+    bullet.h \
+    color_bar.h \
+    ending.h \
+    game.h \
+    gameinfo.h \
+    gameover1.h \
+    gameover2.h \
+    gray_bar.h \
+    light.h \
+    mini_image.h \
+    money.h \
+    summoner.h \
+    taxi.h \
+    taxi_distance.h
 
 FORMS    += mainwindow.ui
 
