@@ -9,6 +9,16 @@ bool Npcdialog::isTrap()
     return (room->gettype()==TRAP && room->open()==0);
 }
 
+void Npcdialog::succeeded()
+{
+    insol1DialogSelect(2, 1);
+}
+
+void Npcdialog::failed()
+{
+    insol1DialogSelect(2,0);
+}
+
 void Npcdialog::insol1Dialog(int index)
 {
     QPixmap * pixmap;
@@ -612,7 +622,7 @@ void Npcdialog::keyPressEvent(QKeyEvent *event)
         {
         case Qt::Key_Escape:
         {
-            if(room->getroomtype()==TRAP)
+            if(room->getroomtype()==TRAP || room->getroomtype()==INSOL3)
             {
                //Reset when character entered to junwis' room
                closeDialog();
@@ -638,7 +648,11 @@ void Npcdialog::keyPressEvent(QKeyEvent *event)
         {
             ROOMTYPE roomtype = room->getroomtype();
             if(roomtype == INSOL1)
-                insol1DialogSelect(currentindex, currentchoice);
+            {
+                //exception when minigame started
+                if(currentindex!=2)
+                    insol1DialogSelect(currentindex, currentchoice);
+            }
             else if(roomtype == INSOL2)
                 insol2DialogSelect(currentindex, currentchoice);
             else if(roomtype == FRIEND)

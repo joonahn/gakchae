@@ -1,4 +1,4 @@
-#include "map.h"
+﻿#include "map.h"
 #include "game.h"
 
 int rc1_mapdata[20][70] = {
@@ -441,4 +441,9 @@ void Map::callmessage2()
     connect(message,SIGNAL(end()),this,SLOT(messageend()));\
     message->setFocus();
     menu->setTime(menu->getTime()-60);
+}
+
+Ui::MainWindow *Map::getWindow()
+{
+    return mainwindow;
 }

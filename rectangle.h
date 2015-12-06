@@ -1,4 +1,4 @@
-#ifndef RECTANGLE
+﻿#ifndef RECTANGLE
 #define RECTANGLE
 
 #include <QGraphicsRectItem>
@@ -13,21 +13,21 @@ namespace minigame{
 class Game;
 }
 
-
 class Rectangle : public QObject, public QGraphicsPixmapItem {
-
+Q_OBJECT
 public:
-    Rectangle(minigame::Game *);
+    Rectangle(minigame::Game *, QWidget *parent);
     void keyPressEvent(QKeyEvent *event);
     void get_it();
     void FinalCheck();
 signals:
-     // void Success();
-     // void Fail();
+     void Success_signal();
+     void Fail_signal();
 
 private:
     minigame::Game *game;
     QMediaPlayer * getitem;
+    QWidget * parent_window;
 };
 
 

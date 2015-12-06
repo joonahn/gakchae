@@ -1,4 +1,4 @@
-#ifndef GAME
+﻿#ifndef GAME
 #define GAME
 #include <QGraphicsScene>
 #include "rectangle.h"
@@ -21,8 +21,10 @@ class DarkBed;
 namespace minigame{
 class Game:public QGraphicsView{
 Q_OBJECT
+private:
+    QWidget * parent_widget;
     public:
-    Game(QWidget *parent=NULL);
+    Game(QWidget *parent);
     QGraphicsScene *scene;
     DarkBed * bed;
     QTimer* timer;

@@ -69,6 +69,10 @@ public:
     void refreshUI();
 
     bool isTrap();
+public slots:
+    //Public methods
+    void succeeded();
+    void failed();
 };
 
 #endif // NPCDIALOG_H

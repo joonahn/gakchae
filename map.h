@@ -1,4 +1,4 @@
-#ifndef MAP_H
+﻿#ifndef MAP_H
 #define MAP_H
 
 #include <QLabel>
@@ -71,6 +71,7 @@ public:
     int getstory();
     void nextstory();
     void callmessage2();
+    Ui::MainWindow *getWindow();
 
 public slots:
     void reset();

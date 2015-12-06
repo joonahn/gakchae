@@ -1,4 +1,4 @@
-#include "rectangle.h"
+﻿#include "rectangle.h"
 #include "itembox.h"
 #include <QKeyEvent>
 #include <QGraphicsScene>
@@ -19,10 +19,11 @@
 Rectangle::Rectangle(minigame::Game* game1)
 {
     setPixmap(QPixmap(":/images/image/hand.png"));
+    parent_window = parent;
     game=game1;
     getitem = new QMediaPlayer();
     getitem->setMedia(QUrl("qrc:/Sound/sound/getitem.wav"));
-    //connect(NULL,SIGNAL(Success()),this,NULL);
+    //connect(this,SIGNAL(Success()),parent_window,SLOT());
     //connect(NULL,SIGNAL(Fail()),this,NULL);  사실 잘모름;;;
 
 }
@@ -54,7 +55,8 @@ void Rectangle::keyPressEvent(QKeyEvent *event)
     }
     else if(event->key()==Qt::Key_Q)
     {
-         //emit Fail();
+        if(Choogha==7)
+            emit Fail_signal();
     }
 }
 void Rectangle::get_it()
@@ -146,13 +148,15 @@ void Rectangle::get_it()
     if(Choogha==7)
     {
       if((getitembox[0]->type==ShowitBox[0]->type)&&(getitembox[1]->type==ShowitBox[1]->type)&&(getitembox[2]->type==ShowitBox[2]->type)&&(getitembox[3]->type==ShowitBox[3]->type)&&(getitembox[4]->type==ShowitBox[4]->type)&&(getitembox[5]->type==ShowitBox[5]->type)&&(getitembox[6]->type==ShowitBox[6]->type))
-          qDebug()<<"blabla";
-          //emit Success();
+      {
+          qDebug()<<"Succeeded";
+          emit Success_signal();
+      }
       else
       {
-         game->fail=new Fail();
+         (game->fail) = new Fail();
          scene()->addItem(game->fail);
-        }
+       }
     }
 
 }

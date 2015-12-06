@@ -10,9 +10,9 @@ ItemBox *getitembox[7];
 ItemBox *ThinkingBox[7];
 extern int Choogha;
 
-Game::Game(QWidget *parent)
+Game::Game(QWidget *parent) : QGraphicsView(parent)
 {
-
+        parent_widget = parent;
         setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         setFixedSize(740,515);
@@ -36,8 +36,7 @@ Game::Game(QWidget *parent)
         hand->setFlag(QGraphicsItem::ItemIsFocusable);
         hand->setFocus();
 
-        //show();
-        this->setVisible(true);
+        show();
 }
 
 
