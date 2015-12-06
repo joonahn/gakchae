@@ -1,9 +1,8 @@
 #include "building.h"
 #include "taxi.h"
 #include "game.h"
-#include <typeinfo>
 
-/*extern*/ Game *game;
+extern Game *game;
 
 
 void Building::draw(int xposi,int yposi,QString s,double scale)
@@ -104,7 +103,7 @@ void Building::move()
     {
         if(typeid(*(colliding_items[i]))== typeid(Taxi))
         {
-            if(game->summoner->getcount()!=1 && game->summoner->getcount()!=9 )
+            if(game->summoner->getcount()!=1 && game->summoner->getcount()!=41 )
             {
             game->summoner->decrease_count();
             scene()->removeItem(this);

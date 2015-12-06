@@ -12,34 +12,34 @@
 #include "summoner.h"
 #include "money.h"
 #include "taxi_distance.h"
-#include "light.h"
-#include "gray_bar.h"
-#include "color_bar.h"
+#include "bar.h"
 #include "mini_image.h"
-#include "gameinfo.h"
+#include "gamescene.h"
 
 class Game: public QGraphicsView{
 public:
-       Game(QGraphicsScene * _scene, int before_money, int resttime);
+       Game(int before_money, int resttime);
        void countup();
        void decrease_count();
-       void decrease_time();
+       void stop_all();
        QGraphicsScene * scene;
        Taxi * taxi;
        Summoner * summoner;
        Money * money;
        Taxi_distance * taxi_distance;
-       Light * light;
-       gray_Bar * gray;
-       color_Bar * red;
+       Bar * gray;
+       Bar * red;
        Mini_image* mini[7];
        QTimer * timer;
-       QTimer * Final_timer;
        QMediaPlayer * music;
-       Gameinfo* info;
+       Gamescene* info;
+       Gamescene *gameover2;
+       Gamescene *background;
+       QMediaPlayer * gameover2_bgm;
+
        int getFinalmoney();
        int getFinaltime();
-
+       void decrease_Finaltime(int time);
 private:
        int count;
        int Final_money;

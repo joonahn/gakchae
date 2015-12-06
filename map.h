@@ -8,6 +8,9 @@
 #include <QLabel>
 #include <QPixmap>
 #include <QIcon>
+#include <QBrush>
+#include <QGraphicsScene>
+
 #include "character.h"
 #include "tile.h"
 #include "mainwindow.h"
@@ -16,6 +19,7 @@
 #include "menustrip.h"
 #include "npcdialog.h"
 #include "message.h"
+#include "game.h"
 
 enum stage{RC_STAGE1, RC_STAGE2, HYOJA_MARKET};
 
@@ -44,6 +48,8 @@ private:
     QTimer * timer;
 
     Message * message;
+
+
 
     //Stage Variable
     int stage;

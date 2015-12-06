@@ -12,7 +12,7 @@ Taxi::Taxi(QGraphicsScene * _scene)
     setPixmap(QPixmap(":/images/taxi.png"));
     setScale(1);
     setPos(50,425);
-    light = new Light();
+    light = new Gamescene(10);
     bulletsound = new QMediaPlayer();
     bulletsound->setMedia(QUrl("qrc:/music/shotgun.mp3"));
     jumpsound = new QMediaPlayer();
@@ -31,10 +31,10 @@ void Taxi::keyPressEvent(QKeyEvent *event)
     {
         if(judge==0)
         {
-            game->Final_timer->start(1000);
             game->taxi->setPos(50,315);
             game->taxi->setScale(1);
-            light->setlight();
+            light->setScale(1);
+            light->setPos(25,285);
             scene->removeItem(game->info);
             game->money->starttimer();
             game->taxi_distance->starttimer();
@@ -114,18 +114,12 @@ void Taxi::moveend()
     light->setPos(light->x()+6,light->y());
     if(pos().x()+100>740)
     {
-        game->money->stoptimer();
-        game->taxi_distance->stoptimer();
-        game->music->stop();
-        game->timer->stop();
-        game->Final_timer->stop();
-        if(musicend->state()==QMediaPlayer::StoppedState)
-        {
-            musicend->play();
-        }
-
-        ending = new Ending();
+        game->stop_all();
+        musicend->play();
+        ending = new Gamescene(4);
         scene->addItem(ending);
+        ending->setFlag(QGraphicsItem::ItemIsFocusable);
+        ending->setFocus();
     }
 }
 

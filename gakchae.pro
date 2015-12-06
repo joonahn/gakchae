@@ -43,7 +43,9 @@ SOURCES += main.cpp\
     explain.cpp \
     darkbed.cpp \
     background.cpp \
-    message.cpp
+    message.cpp \
+    bar.cpp \
+    gamescene.cpp
 
 HEADERS  += mainwindow.h \
     tile.h \
@@ -76,7 +78,10 @@ HEADERS  += mainwindow.h \
     explain.h \
     darkbed.h \
     background.h \
-    message.h
+    message.h \
+    bar.h \
+    building2.h \
+    gamescene.h
 
 FORMS    += mainwindow.ui
 

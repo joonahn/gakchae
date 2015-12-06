@@ -2,7 +2,6 @@
 #include "taxi.h"
 #include "game.h"
 #include "bullet.h"
-#include <typeinfo>
 extern Game *game;
 
 void Building2floor::draw(int xposi,int yposi,QString s,double scale)

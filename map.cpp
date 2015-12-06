@@ -1,6 +1,8 @@
 ﻿#include "map.h"
 #include "game.h"
 
+Game * game;
+
 int rc1_mapdata[20][70] = {
     {7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7},
     {7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 4, 4, 4, 4, 4, 4, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 1, 7, 1, 7, 1, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7},
@@ -51,7 +53,7 @@ int rc2_mapdata[20][70]={
 Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
 {
     int floor2=201,floor1=101;
-    /*insol[0]=rand()%148+101;
+    insol[0]=rand()%148+101;
     if(insol[0]>168)
         insol[0]+=32;
     if(insol[0]>257)
@@ -71,15 +73,11 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
             insol[2]+=32;
         if(insol[2]>257)
             insol[2]++;
-    }*/
-    insol[0]=257;
-    insol[1]=258;
-    insol[2]=259;
+    }
     for(int i = 0;i<3;i++)
         qDebug(QString::number(insol[i]).toStdString().c_str());
     insol2pwd=rand()%9000+1000;
     //Initialize & Load RC1 stage
-    insol2pwd=9999;
     mainwindow = dynamic_cast<Ui::MainWindow*>(_mainwindow);
     //Initialize Tiles
     for(int i = 0;i<20;i++)
@@ -289,6 +287,7 @@ void Map::changeStage()
 
 void Map::finishRC()
 {
+    timer->stop();
     for(int i=0;i<20;i++)
         for(int j=0;j<70;j++){
             delete mapData[i][j];
@@ -297,7 +296,8 @@ void Map::finishRC()
     for(int i=0;i<6;i++)
         delete junwis[i];
     delete me;
-
+    game = new Game(3000,menu->getTime());
+    game->show();
 }
 
 void Map::keyPressEvent(QKeyEvent *event)
@@ -326,6 +326,11 @@ void Map::keyPressEvent(QKeyEvent *event)
             else if(tmp->gettype()==door){
                 if(story==3)
                     finishRC();
+                else{
+                    message=new Message(this,2);
+                    message->setFocus();
+                    connect(message,SIGNAL(end()),this,SLOT(messageend()));
+                }
             }
             else{
                 timer->stop();
