@@ -30,7 +30,7 @@ Game::Game(QWidget *parent) : QGraphicsView(parent)
         timer->start();
         connect(timer,SIGNAL(timeout()), this, SLOT(timeover()));
 
-        hand = new Rectangle(this);
+        hand = new Rectangle(this, parent_widget);
         hand->setPos(10,300);
         hand->setScale(1);
         hand->setFlag(QGraphicsItem::ItemIsFocusable);
@@ -94,7 +94,7 @@ void Game::Reset()
     connect(timerTurn,SIGNAL(timeout()),this,SLOT(turnover()));
     timerHand->setInterval(4000);
     timerHand->start();
-    hand = new Rectangle(this);
+    hand = new Rectangle(this, parent_widget);
     hand->setPos(10,300);
     hand->setScale(1);
     hand->setFlag(QGraphicsItem::ItemIsFocusable);

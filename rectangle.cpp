@@ -7,6 +7,7 @@
 #include <QGraphicsView>
 #include "minigame.h"
 #include <QGraphicsTextItem>
+#include "npcdialog.h"
 
 #include <QDebug>
  
@@ -16,15 +17,16 @@
  extern ItemBox *ThinkingBox[7];
  extern minigame::Game * game;
  int Choogha=0;
-Rectangle::Rectangle(minigame::Game* game1)
+
+Rectangle::Rectangle(minigame::Game* game1, QWidget * parent)
 {
     setPixmap(QPixmap(":/images/image/hand.png"));
     parent_window = parent;
     game=game1;
     getitem = new QMediaPlayer();
     getitem->setMedia(QUrl("qrc:/Sound/sound/getitem.wav"));
-    //connect(this,SIGNAL(Success()),parent_window,SLOT());
-    //connect(NULL,SIGNAL(Fail()),this,NULL);  사실 잘모름;;;
+    connect(this,SIGNAL(Success_signal()),dynamic_cast<Npcdialog*>(parent_window),SLOT(succeeded()));
+    connect(this,SIGNAL(Fail_signal()),dynamic_cast<Npcdialog*>(parent_window),SLOT(failed()));
 
 }
 

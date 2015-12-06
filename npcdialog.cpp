@@ -11,11 +11,13 @@ bool Npcdialog::isTrap()
 
 void Npcdialog::succeeded()
 {
+    delete game;
     insol1DialogSelect(2, 1);
 }
 
 void Npcdialog::failed()
 {
+    delete game;
     insol1DialogSelect(2,0);
 }
 
