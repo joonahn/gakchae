@@ -8,6 +8,7 @@
 #include <QLabel>
 #include <QPixmap>
 #include <QIcon>
+
 #include "character.h"
 #include "tile.h"
 #include "mainwindow.h"
@@ -16,6 +17,7 @@
 #include "menustrip.h"
 #include "npcdialog.h"
 #include "message.h"
+#include "game.h"
 
 enum stage{RC_STAGE1, RC_STAGE2, HYOJA_MARKET};
 
