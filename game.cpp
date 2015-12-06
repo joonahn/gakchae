@@ -1,26 +1,33 @@
 #include "game.h"
 #include <QMediaPlayer>
-#include <QDebug>
 #include <QImage>
 #include <QBrush>
-
-Game::Game(QGraphicsScene *_scene, int before_money, int resttime) : QGraphicsView(_scene)
+#include <QDebug>
+Game::Game(int before_money, int resttime)
 {
     Final_money=before_money;
     Final_time=resttime;
-    scene=_scene;
+
+    scene = new QGraphicsScene();
+    scene->setSceneRect(0,0,740,510);
+    setScene(scene);
+
+    background = new Gamescene(0);
+    scene->addItem(background);
 
     count=0;
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(740,510);
-//scene->setBackgroundBrush(QBrush(QImage(":/images/taxi_background.png")));
-
+//gameover2_scene and bgm
+    gameover2 = new Gamescene(3);
+    gameover2_bgm = new QMediaPlayer();
+    gameover2_bgm->setMedia(QUrl("qrc:/music/gameover2.mp3"));
 
 
 //create the bar
-    gray = new gray_Bar();
-    red = new color_Bar();
+    gray = new Bar(2);
+    red = new Bar(1);
     scene->addItem(gray);
     scene->addItem(red);
 
@@ -43,28 +50,24 @@ Game::Game(QGraphicsScene *_scene, int before_money, int resttime) : QGraphicsVi
     scene->addItem(taxi_distance);
 
 // summoner create
-    int rand_time;
-    rand_time=2000;
     summoner = new Summoner(scene);
     timer = new QTimer();
     QObject::connect(timer,SIGNAL(timeout()),summoner,SLOT(spawn()));
 
-//flow time
-    Final_timer = new QTimer();
-    QObject::connect(Final_timer,SIGNAL(timeout()),summoner,SLOT(timeflow()));
+// flow time
+
 
 // play background music
     music = new QMediaPlayer();
     music->setMedia(QUrl("qrc:/music/main_bgm.mp3"));
-    info = new Gameinfo();
+    info = new Gamescene(1);
     scene->addItem(info);
 
 // taxi create
-        taxi = new Taxi(scene);
-        taxi->setFlag(QGraphicsItem::ItemIsFocusable);
-        taxi->setFocus();
-        scene->addItem(taxi);
-
+    taxi = new Taxi(scene);
+    taxi->setFlag(QGraphicsItem::ItemIsFocusable);
+    taxi->setFocus();
+    scene->addItem(taxi);
 
     show();
 }
@@ -76,13 +79,13 @@ void Game::decrease_count()
 {
     count=count-count%8;
 }
-void Game::decrease_time()
+
+void Game::stop_all()
 {
-    Final_time--;
-    if(Final_time==0)
-    {
-        //씬추가
-    }
+    money->stoptimer();
+    taxi_distance->stoptimer();
+    music->stop();
+    timer->stop();
 }
 int Game::getFinalmoney()
 {
@@ -91,4 +94,18 @@ int Game::getFinalmoney()
 int Game::getFinaltime()
 {
     return Final_time;
+}
+
+void Game::decrease_Finaltime(int time)
+{
+    qDebug()<<"hihi";
+    Final_time-=time;
+    if(Final_time<0)
+    {
+        stop_all();
+        gameover2->setFlag(QGraphicsItem::ItemIsFocusable);
+        gameover2->setFocus();
+        gameover2_bgm->play();
+        scene->addItem(gameover2);
+    }
 }

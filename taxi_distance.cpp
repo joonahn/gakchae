@@ -1,11 +1,11 @@
 #include "taxi_distance.h"
-
-
+#include "game.h"
+extern Game* game;
 Taxi_distance::Taxi_distance(QGraphicsItem *parent): QGraphicsTextItem(parent)
 {
    taxi_distance=0.00;
    setPlainText(QString("주행거리: ")+QString::number(taxi_distance)+QString("km"));//score1
-   setDefaultTextColor(Qt::blue);
+   setDefaultTextColor(Qt::white);
    setFont(QFont("times",16));
    timer = new QTimer();
    connect(timer,SIGNAL(timeout()),this,SLOT(increase()));   

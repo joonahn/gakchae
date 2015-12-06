@@ -35,8 +35,7 @@ int Summoner::getcount()
 
 void Summoner::spawn()
 {
-
-
+    game->decrease_Finaltime(2);
     int random_floor=1+rand()%2;
     count++;
     game->countup();
@@ -66,7 +65,7 @@ void Summoner::spawn()
         Building * building3 = new Building(xposi,yposi,0,specialnum++,0);
         scene->addItem(building3);
     }
-    if(count==9)
+    if(count==41)
     {
        game->timer->stop();
        timerend = new QTimer();
@@ -74,15 +73,7 @@ void Summoner::spawn()
        timerend->start(30);
     }
 
-}
-
-void Summoner::timeflow()
-{
-    game->decrease_time();
-}
-
-void Summoner::checkmoney()
-{
-    if(game->money->getmoney() >game->getFinalmoney() );
 
 }
+
+

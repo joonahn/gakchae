@@ -1,6 +1,6 @@
 #ifndef TAXI
 #define TAXI
-#include "light.h"
+
 #include <QGraphicsPixmapItem>
 #include <QObject>
 #include <QGraphicsScene>
@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include "building.h"
 #include <QMediaPlayer>
-#include "ending.h"
+#include "gamescene.h"
 class Taxi: public QObject, public QGraphicsPixmapItem{
 Q_OBJECT
 public:
@@ -28,8 +28,8 @@ private:
     QMediaPlayer * bulletsound;
     QMediaPlayer * jumpsound;
     QMediaPlayer * musicend;
-    Light *light;
-    Ending *ending;
+    Gamescene *light;
+    Gamescene * ending;
 };
 
 

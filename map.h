@@ -8,6 +8,8 @@
 #include <QLabel>
 #include <QPixmap>
 #include <QIcon>
+#include <QBrush>
+#include <QGraphicsScene>
 
 #include "character.h"
 #include "tile.h"

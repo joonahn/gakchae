@@ -4,6 +4,9 @@
 #include <QGraphicsTextitem>
 #include<QFont>
 #include<QTimer>
+#include"gamescene.h"
+#include"QMediaPlayer"
+
 class Money: public QGraphicsTextItem{
 Q_OBJECT
 public:
@@ -16,6 +19,8 @@ public slots:
 private:
     int money;
     QTimer *timer;
+    Gamescene *gameover1;
+    QMediaPlayer * gameover1_bgm;
 };
 
 

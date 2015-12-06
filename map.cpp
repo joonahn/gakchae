@@ -291,6 +291,7 @@ void Map::changeStage()
 
 void Map::finishRC()
 {
+    timer->stop();
     for(int i=0;i<20;i++)
         for(int j=0;j<70;j++){
             delete mapData[i][j];
@@ -299,7 +300,7 @@ void Map::finishRC()
     for(int i=0;i<6;i++)
         delete junwis[i];
     delete me;
-
+    game = new Game(NULL,menu->getMoney(),menu->getTime());
 }
 
 void Map::keyPressEvent(QKeyEvent *event)
@@ -328,6 +329,11 @@ void Map::keyPressEvent(QKeyEvent *event)
             else if(tmp->gettype()==door){
                 if(story==3)
                     finishRC();
+                else{
+                    message=new Message(this,2);
+                    message->setFocus();
+                    connect(message,SIGNAL(end()),this,SLOT(messageend()));
+                }
             }
             else{
                 timer->stop();

@@ -4,7 +4,7 @@
 #include"building.h"
 #include"QMediaPlayer"
 #include"building2floor.h"
-#include"ending.h"
+
 class Summoner : public QObject, public  QGraphicsRectItem{
 private:
     Q_OBJECT
@@ -19,7 +19,7 @@ private:
     QGraphicsScene * scene;
     QGraphicsPixmapItem *redbar;
     QGraphicsPixmapItem *greybar;
-    Ending *ending;
+
 
 public:
     Summoner(QGraphicsScene * _scene);
@@ -30,8 +30,6 @@ public:
 
 public slots:
     void spawn();
-    void timeflow();
-    void checkmoney();
 };
 
 

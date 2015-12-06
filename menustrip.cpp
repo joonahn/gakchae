@@ -39,6 +39,11 @@ Menustrip::Menustrip(QWidget *parent, int initial_money, int initial_time, int i
     stagelabel->move(24,0);
 }
 
+int Menustrip::getTime()
+{
+    return time;
+}
+
 int Menustrip::getMoney()
 {
     return money;
