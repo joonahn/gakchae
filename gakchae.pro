@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -34,7 +34,15 @@ SOURCES += main.cpp\
     money.cpp \
     summoner.cpp \
     taxi.cpp \
-    taxi_distance.cpp
+    taxi_distance.cpp \
+    rectangle.cpp \
+    minigame.cpp \
+    machugi.cpp \
+    itembox.cpp \
+    fail.cpp \
+    explain.cpp \
+    darkbed.cpp \
+    background.cpp
 
 HEADERS  += mainwindow.h \
     tile.h \
@@ -58,7 +66,15 @@ HEADERS  += mainwindow.h \
     money.h \
     summoner.h \
     taxi.h \
-    taxi_distance.h
+    taxi_distance.h \
+    rectangle.h \
+    minigame.h \
+    machugi.h \
+    itembox.h \
+    fail.h \
+    explain.h \
+    darkbed.h \
+    background.h
 
 FORMS    += mainwindow.ui
 

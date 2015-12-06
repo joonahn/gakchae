@@ -2,6 +2,7 @@
 #define NPCDIALOG_H
 
 #include "tile.h"
+#include "minigame.h"
 
 class Map;
 
@@ -11,6 +12,7 @@ class Npcdialog : public QLabel
 {
     Q_OBJECT
 private:
+    //Private members
     Map * map;
     Room * room;
     int nselect;
@@ -18,6 +20,7 @@ private:
     int currentchoice;
     bool unlocked;
 
+    //Labels
     QLabel * NPCname;
     QLabel * NPCimage;
     QLabel * dialoglabel;
@@ -25,6 +28,9 @@ private:
     QLabel * dialogselectlabel[2];
     QLabel * inputpwlabel[4];
     QString inputpw;
+
+    //Minigame view
+    minigame::Game * game;
 
     //Private Function
     //~Dialog : setUI, ~DialogSelect : do next action by choice

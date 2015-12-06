@@ -1,6 +1,7 @@
 #include "building.h"
 #include "taxi.h"
 #include "game.h"
+#include <typeinfo>
 
 extern Game *game;
 

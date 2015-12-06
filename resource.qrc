@@ -74,5 +74,27 @@
         <file>taxiinfo.png</file>
         <file>taxistop.png</file>
         <file>bigjunwi.png</file>
+        <file>image/61.png</file>
+        <file>image/bebed.png</file>
+        <file>image/black.png</file>
+        <file>image/burger.png</file>
+        <file>image/circle.png</file>
+        <file>image/dust.png</file>
+        <file>image/fail.png</file>
+        <file>image/gun.png</file>
+        <file>image/hand.png</file>
+        <file>image/hanger.png</file>
+        <file>image/howto.png</file>
+        <file>image/machugi.png</file>
+        <file>image/minigame.png</file>
+        <file>image/minigameback.png</file>
+        <file>image/report.png</file>
+        <file>image/roach.png</file>
+    </qresource>
+    <qresource prefix="/Sound">
+        <file>sound/background.mp3</file>
+        <file>sound/background2.mp3</file>
+        <file>sound/background3.mp3</file>
+        <file>sound/getitem.wav</file>
     </qresource>
 </RCC>
