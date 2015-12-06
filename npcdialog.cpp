@@ -12,7 +12,7 @@ void Npcdialog::insol1Dialog(int index)
         pixmap = new QPixmap(":/images/room.png");
         this->setPixmap(*pixmap);
         delete pixmap;
-        pixmap = new QPixmap(":/images/in solja.png");
+        pixmap = new QPixmap(":/images/insolja.png");
         NPCimage->setPixmap(*pixmap);
         delete pixmap;
         pixmap = new QPixmap(":/images/blacksquare.png");
@@ -364,7 +364,7 @@ void Npcdialog::trapDialog()
     pixmap = new QPixmap(":/images/room.png");
     this->setPixmap(*pixmap);
     delete pixmap;
-    pixmap = new QPixmap(":/images/redfriend.png");
+    pixmap = new QPixmap(":/images/bigjunwi.png");
     NPCimage->setPixmap(*pixmap);
     delete pixmap;
     pixmap = new QPixmap(":/images/blacksquare.png");
