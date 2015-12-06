@@ -89,7 +89,7 @@ void Character::check()
     for(int i=0;i<6;i++){
         junwi=map->getJunwi(i);
         if(((x+25)/50==(junwi->getx()+25)/50)&&((y+25)/50)==((junwi->gety()+25)/50)){
-            //emit catched();
+            emit catched();
             break;
         }
     }

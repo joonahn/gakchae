@@ -56,6 +56,7 @@ private:
 signals:
     void resumeGame();
     void reset();
+    void message();
 
 public:
     //Constructor
@@ -66,6 +67,8 @@ public:
 
     //Place UI *** need to be called when dialog, select text changed ***
     void refreshUI();
+
+    bool isTrap();
 };
 
 #endif // NPCDIALOG_H

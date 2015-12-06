@@ -151,29 +151,9 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     //MenuStrip Init
     menu = new Menustrip(this, 1000, 1000, RC_STAGE1);
 
-    message=new QLabel(this);
-
-    button[0]=new QPushButton(this);
-    button[1]=new QPushButton(this);
 
 
-    QPixmap * pixmap = new QPixmap(":/images/start_window.png");
-    message->setPixmap(*pixmap);
-    delete pixmap;
-    pixmap=new QPixmap(":/images/gamestartbutton.png");
-    QIcon * ButtonIcon = new QIcon(*pixmap);
-    button[0]->setIcon(*ButtonIcon);
-    button[0]->setIconSize(pixmap->rect().size());
-    button[0]->move(245,250);
-    delete pixmap;
-    delete ButtonIcon;
-    pixmap=new QPixmap(":/images/howto_button.png");
-    ButtonIcon = new QIcon(*pixmap);
-    button[1]->setIcon(*ButtonIcon);
-    button[1]->setIconSize(pixmap->rect().size());
-    button[1]->move(245,350);
-    delete pixmap;
-    delete ButtonIcon;
+
 
     this->setGeometry(0,0,740,515);
 
@@ -184,12 +164,13 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     connect(timer,SIGNAL(timeout()),this,SLOT(moveall()));
     connect(me,SIGNAL(catched()),this,SLOT(caught()));
     connect(menu,SIGNAL(gameset()),this,SLOT(caught())); //game over.
-    connect(button[0],SIGNAL(clicked()),this,SLOT(gamestart()));
-    story=-4;
+    story=0;
     friendnum=0;
     stage=2;
     npcdialog=NULL;
-    started=false;
+    message=new Message(this,0);
+    connect(message,SIGNAL(end()),this,SLOT(messageend()));
+    message->setFocus();
 }
 
 Character *Map::getCharacter()
@@ -321,75 +302,43 @@ void Map::finishRC()
 
 }
 
-void Map::keyboardInput(QKeyEvent *event)
+void Map::keyPressEvent(QKeyEvent *event)
 {
-    if(started){
-        if(story<0){
-            if(event->key()==Qt::Key_Space){
-                story++;
-                if(story<0){
-                    QPixmap * pixmap;
-                    switch(story){
-                    case -3:
-                        pixmap=new QPixmap(":/images/intro2.png");
-                        break;
-                    case -2:
-                        pixmap=new QPixmap(":/images/intro3.png");
-                        break;
-                    case -1:
-                        pixmap=new QPixmap(":/images/intro4.png");
-                        break;
-                    }
-                    message->setPixmap(*pixmap);
-                    delete pixmap;
-                }
-                else{
-                    message->setVisible(false);
-                    timer->start(20);
-                }
+        switch(event->key())
+        {
+        case Qt::Key_Left:
+            me->changedir(LEFT);
+            break;
+        case Qt::Key_Right:
+            me->changedir(RIGHT);
+            break;
+        case Qt::Key_Up:
+            me->changedir(UP);
+            break;
+        case Qt::Key_Down:
+            me->changedir(DOWN);
+            break;
+        case Qt::Key_Space:
+        {
+            Tile* tmp=me->getspacebar();
+            if(tmp==NULL)
+                break;
+            if(tmp->gettype()==stairs)
+                changeStage();
+            else if(tmp->gettype()==door){
+                if(story==3)
+                    finishRC();
             }
-            else
-                event->ignore();
+            else{
+                timer->stop();
+                npcdialog=new Npcdialog(this,dynamic_cast<Room*>(tmp));
+            }
+            break;
         }
-        else
-            switch(event->key())
-            {
-            case Qt::Key_Left:
-                me->changedir(LEFT);
-                break;
-            case Qt::Key_Right:
-                me->changedir(RIGHT);
-                break;
-            case Qt::Key_Up:
-                me->changedir(UP);
-                break;
-            case Qt::Key_Down:
-                me->changedir(DOWN);
-                break;
-            case Qt::Key_Space:
-            {
-                Tile* tmp=me->getspacebar();
-                if(tmp==NULL)
-                    break;
-                if(tmp->gettype()==stairs)
-                    changeStage();
-                else if(tmp->gettype()==door){
-                    if(story==3)
-                        finishRC();
-                }
-                else{
-                    timer->stop();
-                    npcdialog=new Npcdialog(this,dynamic_cast<Room*>(tmp));
-                }
-                break;
-            }
-            default:
-                event->ignore();
-                break;
-            }
-        }
-        else
+        default:
             event->ignore();
+            break;
+        }
 }
 
 int Map::getPasswd()
@@ -463,18 +412,35 @@ void Map::reset()
 }
 
 void Map::resume()
-{
+{    
+    bool tmp=npcdialog->isTrap();
     delete npcdialog;
     npcdialog=NULL;
-    timer->start(20);
     placeObject();
+    if(tmp)
+        callmessage2();
+    else{
+        timer->start(20);
+        this->setFocus();
+    }
 }
 
-void Map::gamestart()
+void Map::messageend()
 {
-    QPixmap pixmap(":/images/intro1.png");
-    started=true;
-    message->setPixmap(pixmap);
-    delete button[0];
-    delete button[1];
+    delete message;
+    timer->start(20);
+    this->setFocus();
+}
+
+void Map::gameover()
+{
+
+}
+
+void Map::callmessage2()
+{
+    message=new Message(this,1);
+    connect(message,SIGNAL(end()),this,SLOT(messageend()));\
+    message->setFocus();
+    menu->setTime(menu->getTime()-60);
 }

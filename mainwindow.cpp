@@ -10,11 +10,12 @@ MainWindow::MainWindow(QWidget *parent) :
     map = new Map(this,parent);
     this->setCentralWidget(map);
     //this->setFixedSize(740,515);
+    map->setFocus();
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-    map->keyboardInput(event);
+    //map->keyboardInput(event);
 }
 
 MainWindow::~MainWindow()

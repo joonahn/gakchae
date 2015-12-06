@@ -7,7 +7,6 @@
 #include <QKeyEvent>
 #include <QLabel>
 #include <QPixmap>
-#include <QPushButton>
 #include <QIcon>
 #include "character.h"
 #include "tile.h"
@@ -16,7 +15,7 @@
 #include "mapdata.h"
 #include "menustrip.h"
 #include "npcdialog.h"
-#include "game.h"
+#include "message.h"
 
 enum stage{RC_STAGE1, RC_STAGE2, HYOJA_MARKET};
 
@@ -44,9 +43,7 @@ private:
     //Frame move Timer
     QTimer * timer;
 
-    QLabel * message;
-
-    QPushButton * button[2];
+    Message * message;
 
     //Stage Variable
     int stage;
@@ -59,8 +56,6 @@ private:
     int friendnum;
 
     int insol2pwd;
-
-    bool started;
 public:
     Map(QMainWindow * _mainwindow,QWidget *parent);
     Character * getCharacter();
@@ -70,18 +65,21 @@ public:
     void changeStage();
     void finishRC();
     void placeObject();
-    void keyboardInput(QKeyEvent * event);
+    void keyPressEvent(QKeyEvent * event);
     int getPasswd();
     Menustrip * getMenu();
     int getstory();
     void nextstory();
+    void callmessage2();
 
 public slots:
     void reset();
     void moveall();
     void caught();
     void resume();
-    void gamestart();
+    void messageend();
+    void gameover();
+
 signals:
 };
 

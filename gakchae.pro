@@ -7,7 +7,6 @@
 QT       += core gui multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
 TARGET = gakchae
 TEMPLATE = app
 
@@ -35,6 +34,7 @@ SOURCES += main.cpp\
     summoner.cpp \
     taxi.cpp \
     taxi_distance.cpp \
+<<<<<<< HEAD
     rectangle.cpp \
     minigame.cpp \
     machugi.cpp \
@@ -43,6 +43,9 @@ SOURCES += main.cpp\
     explain.cpp \
     darkbed.cpp \
     background.cpp
+=======
+    message.cpp
+>>>>>>> a8ebcdf7b4e16d2bd7d34740bc710c1afc3e6613
 
 HEADERS  += mainwindow.h \
     tile.h \
@@ -67,6 +70,7 @@ HEADERS  += mainwindow.h \
     summoner.h \
     taxi.h \
     taxi_distance.h \
+<<<<<<< HEAD
     rectangle.h \
     minigame.h \
     machugi.h \
@@ -75,6 +79,9 @@ HEADERS  += mainwindow.h \
     explain.h \
     darkbed.h \
     background.h
+=======
+    message.h
+>>>>>>> a8ebcdf7b4e16d2bd7d34740bc710c1afc3e6613
 
 FORMS    += mainwindow.ui
 
