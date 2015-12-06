@@ -92,18 +92,23 @@
         <file>image/roach.png</file>
         <file>gameover1.png</file>
         <file>gameover2.png</file>
+        <file>tiledoor.png</file>
+        <file>highscoreNew.png</file>
     </qresource>
     <qresource prefix="/Sound">
         <file>sound/background.mp3</file>
         <file>sound/background2.mp3</file>
         <file>sound/background3.mp3</file>
         <file>sound/getitem.wav</file>
-        <file>crush.mp3</file>
+    </qresource>
+    <qresource prefix="/music">
         <file>endingsong.mp3</file>
         <file>gameover1.mp3</file>
         <file>gameover2.mp3</file>
         <file>main_bgm.mp3</file>
-        <file>music_bgm.mp3</file>
         <file>shotgun.mp3</file>
+        <file>Jump.wav</file>
+        <file>rc_bgm.mp3</file>
+        <file>babababa.wma</file>
     </qresource>
 </RCC>

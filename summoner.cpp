@@ -39,6 +39,8 @@ void Summoner::spawn()
     int random_floor=1+rand()%2;
     count++;
     game->countup();
+  if(game->getFinaltime()>0)
+  {
     if(1 != count%8)
     {
         if(random_floor==1)
@@ -72,8 +74,13 @@ void Summoner::spawn()
        connect(timerend,SIGNAL(timeout()),game->taxi,SLOT(moveend()));
        timerend->start(30);
     }
-
-
+    if(game->money->getmoney() > 8000)
+    {
+        game->music->stop();
+        game->music->setPosition(0);
+        game->music->play();
+    }
+  }
 }
 
 

@@ -12,6 +12,8 @@ public:
      void keyPressEvent(QKeyEvent * event);
 private:
      int scenenum;
+signals:
+     void theend();
 };
 
 

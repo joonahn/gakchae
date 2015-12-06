@@ -58,7 +58,10 @@ void Rectangle::keyPressEvent(QKeyEvent *event)
     else if(event->key()==Qt::Key_Q)
     {
         if(Choogha==7)
+        {
             emit Fail_signal();
+            Choogha=0;
+        }
     }
 }
 void Rectangle::get_it()
@@ -152,6 +155,7 @@ void Rectangle::get_it()
       if((getitembox[0]->type==ShowitBox[0]->type)&&(getitembox[1]->type==ShowitBox[1]->type)&&(getitembox[2]->type==ShowitBox[2]->type)&&(getitembox[3]->type==ShowitBox[3]->type)&&(getitembox[4]->type==ShowitBox[4]->type)&&(getitembox[5]->type==ShowitBox[5]->type)&&(getitembox[6]->type==ShowitBox[6]->type))
       {
           qDebug()<<"Succeeded";
+          Choogha = 0;
           emit Success_signal();
       }
       else

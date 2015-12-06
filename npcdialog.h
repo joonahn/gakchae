@@ -3,6 +3,7 @@
 
 #include "tile.h"
 #include "minigame.h"
+#include <QMediaPlayer>
 
 class Map;
 
@@ -28,6 +29,9 @@ private:
     QLabel * dialogselectlabel[2];
     QLabel * inputpwlabel[4];
     QString inputpw;
+
+    //BGM
+    QMediaPlayer * babam;
 
     //Minigame view
     minigame::Game * game;

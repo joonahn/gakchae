@@ -25,10 +25,14 @@ void Gamescene::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_Space)
     {
-        qDebug()<< "hi";
-
+        if(scenenum==4){
+            emit theend();
+        }
+        else
+            exit(0);
     }
-
+    else
+        event->ignore();
 
 }
 

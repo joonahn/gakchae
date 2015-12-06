@@ -45,7 +45,8 @@ SOURCES += main.cpp\
     background.cpp \
     message.cpp \
     bar.cpp \
-    gamescene.cpp
+    gamescene.cpp \
+    score.cpp
 
 HEADERS  += mainwindow.h \
     tile.h \
@@ -81,7 +82,8 @@ HEADERS  += mainwindow.h \
     message.h \
     bar.h \
     building2.h \
-    gamescene.h
+    gamescene.h \
+    score.h
 
 FORMS    += mainwindow.ui
 

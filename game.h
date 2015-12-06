@@ -17,8 +17,9 @@
 #include "gamescene.h"
 
 class Game: public QGraphicsView{
+    Q_OBJECT
 public:
-       Game(int before_money, int resttime);
+       Game(QWidget* parent, int before_money, int resttime);
        void countup();
        void decrease_count();
        void stop_all();
@@ -44,6 +45,10 @@ private:
        int count;
        int Final_money;
        int Final_time;
+public slots:
+       void theend();
+signals:
+       void ending();
 };
 
 

@@ -3,7 +3,7 @@
 #include <QImage>
 #include <QBrush>
 #include <QDebug>
-Game::Game(int before_money, int resttime)
+Game::Game(QWidget *parent, int before_money, int resttime) : QGraphicsView(parent)
 {
     Final_money=before_money;
     Final_time=resttime;
@@ -68,7 +68,7 @@ Game::Game(int before_money, int resttime)
     taxi->setFlag(QGraphicsItem::ItemIsFocusable);
     taxi->setFocus();
     scene->addItem(taxi);
-
+    connect(taxi,SIGNAL(endingsignal()),this,SLOT(theend()));
     show();
 }
 void Game::countup()
@@ -89,7 +89,7 @@ void Game::stop_all()
 }
 int Game::getFinalmoney()
 {
-    return Final_money;
+    return Final_money-money->getmoney();
 }
 int Game::getFinaltime()
 {
@@ -98,7 +98,6 @@ int Game::getFinaltime()
 
 void Game::decrease_Finaltime(int time)
 {
-    qDebug()<<"hihi";
     Final_time-=time;
     if(Final_time<0)
     {
@@ -107,5 +106,11 @@ void Game::decrease_Finaltime(int time)
         gameover2->setFocus();
         gameover2_bgm->play();
         scene->addItem(gameover2);
+        delete taxi;
     }
+}
+
+void Game::theend()
+{
+    emit ending();
 }

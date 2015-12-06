@@ -63,6 +63,10 @@ Message::Message(QWidget *parent, int _type):QLabel(parent),type(_type)
         num=1;
         this->setGeometry(0,-30, 740,515);
         break;
+    case 3:
+        pixmap=new QPixmap(":/images/gameover2.png");
+        num=5;
+        break;
     }
     this->setPixmap(*pixmap);
     delete pixmap;
@@ -89,6 +93,9 @@ void Message::getnextscene()
         delete label;
         button[1]->setEnabled(true);
         button[0]->setEnabled(true);
+    }
+    else if(num==5){
+        exit(0);
     }
     else{
         QPixmap * pixmap;

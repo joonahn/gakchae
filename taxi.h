@@ -19,6 +19,7 @@ public:
 public slots:
     void move();
     void moveend();
+    void theend();
 private:
 
     int up_down;
@@ -30,6 +31,8 @@ private:
     QMediaPlayer * musicend;
     Gamescene *light;
     Gamescene * ending;
+signals:
+    void endingsignal();
 };
 
 

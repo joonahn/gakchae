@@ -1,6 +1,7 @@
 ﻿#include "map.h"
 #include "game.h"
 
+
 Game * game;
 
 int rc1_mapdata[20][70] = {
@@ -159,7 +160,7 @@ Map::Map(QMainWindow *_mainwindow,QWidget *parent):QWidget(parent)
     timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(moveall()));
     connect(me,SIGNAL(catched()),this,SLOT(caught()));
-    connect(menu,SIGNAL(gameset()),this,SLOT(caught())); //game over.
+    connect(menu,SIGNAL(gameset()),this,SLOT(gameover())); //game over.
     story=0;
     friendnum=0;
     stage=2;
@@ -288,6 +289,8 @@ void Map::changeStage()
 void Map::finishRC()
 {
     timer->stop();
+    musictimer->stop();
+    main_bgm->stop();
     for(int i=0;i<20;i++)
         for(int j=0;j<70;j++){
             delete mapData[i][j];
@@ -296,8 +299,9 @@ void Map::finishRC()
     for(int i=0;i<6;i++)
         delete junwis[i];
     delete me;
-    game = new Game(3000,menu->getTime());
+    game = new Game(this,menu->getMoney(),menu->getTime());
     game->show();
+    connect(game,SIGNAL(ending()),this,SLOT(highscore()));
 }
 
 void Map::keyPressEvent(QKeyEvent *event)
@@ -334,6 +338,8 @@ void Map::keyPressEvent(QKeyEvent *event)
             }
             else{
                 timer->stop();
+                musictimer->stop();
+                main_bgm->stop();
                 npcdialog=new Npcdialog(this,dynamic_cast<Room*>(tmp));
             }
             break;
@@ -377,6 +383,9 @@ void Map::moveall()
 void Map::caught()
 {
     reset();
+    timer->stop();
+    main_bgm->stop();
+    musictimer->stop();
     Room* tmp=new Room(this,this,rup,1,1,111,TRAP,0);
     npcdialog=new Npcdialog(this,tmp);
 }
@@ -418,6 +427,8 @@ void Map::resume()
 {    
     bool tmp=npcdialog->isTrap();
     delete npcdialog;
+    main_bgm->play();
+    musictimer->start(120000);
     npcdialog=NULL;
     placeObject();
     if(tmp)
@@ -433,11 +444,29 @@ void Map::messageend()
     delete message;
     timer->start(20);
     this->setFocus();
+    main_bgm = new QMediaPlayer();
+    main_bgm->setMedia(QUrl("qrc:/music/rc_bgm.mp3"));
+    main_bgm->play();
+    musictimer = new QTimer();
+    connect(musictimer, SIGNAL(timeout()), this, SLOT(bgmcheck()));
+    musictimer->start(120000);
 }
 
 void Map::gameover()
 {
+    message=new Message(this,3);
+}
 
+void Map::highscore()
+{
+    Score=new score(this,game->getFinaltime(),game->getFinalmoney());
+}
+
+void Map::bgmcheck()
+{
+    main_bgm->stop();
+    main_bgm->setPosition(0);
+    main_bgm->play();
 }
 
 void Map::callmessage2()

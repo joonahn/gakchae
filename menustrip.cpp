@@ -26,8 +26,8 @@ Menustrip::Menustrip(QWidget *parent, int initial_money, int initial_time, int i
     //Add Inner Label UI
     timelabel = new QLabel(this);
     moneylabel = new QLabel(this);
-    timelabel->move(616, 17);
-    moneylabel->move(430, 17);
+    timelabel->setGeometry(616, 17, 120, 20);
+    moneylabel->setGeometry(430, 17, 120, 20);
     timelabel->setText(QString::number(time));
     moneylabel->setText(QString::number(money));
 

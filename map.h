@@ -10,6 +10,7 @@
 #include <QIcon>
 #include <QBrush>
 #include <QGraphicsScene>
+#include <QMediaPlayer>
 
 #include "character.h"
 #include "tile.h"
@@ -20,6 +21,7 @@
 #include "npcdialog.h"
 #include "message.h"
 #include "game.h"
+#include "score.h"
 
 enum stage{RC_STAGE1, RC_STAGE2, HYOJA_MARKET};
 
@@ -48,9 +50,9 @@ private:
     QTimer * timer;
 
     Message * message;
-
-
-
+    //create main_bgm
+    QMediaPlayer *main_bgm;
+    QTimer * musictimer;
     //Stage Variable
     int stage;
 
@@ -62,6 +64,8 @@ private:
     int friendnum;
 
     int insol2pwd;
+
+    score* Score;
 public:
     Map(QMainWindow * _mainwindow,QWidget *parent);
     Character * getCharacter();
@@ -86,6 +90,8 @@ public slots:
     void resume();
     void messageend();
     void gameover();
+    void highscore();
+    void bgmcheck();
 
 signals:
 };

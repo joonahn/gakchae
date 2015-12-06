@@ -13,12 +13,15 @@ void Npcdialog::succeeded()
 {
     delete game;
     insol1DialogSelect(2, 1);
+    setFocus();
+
 }
 
 void Npcdialog::failed()
 {
     delete game;
     insol1DialogSelect(2,0);
+    setFocus();
 }
 
 void Npcdialog::insol1Dialog(int index)
@@ -50,7 +53,7 @@ void Npcdialog::insol1Dialog(int index)
     else if(index==3)
     {
         //Succeeded in mission
-        dialogtextlabel->setText((QString(QString::fromLocal8Bit("훌륭하군! 내 레포트를 찾아준 보답으로 육일콜 번호를 주도록 하지, 아 그리고 밖에 나갈거면 학생증이 필요할거야. 나는 없는데 학생증 가지고 있는 다른 인솔자 방 비밀번호를 알려줄게. ") + QString::number(map->getPasswd()) + QString::fromLocal8Bit("잘 외워 두라고!")).toStdString().c_str()));
+        dialogtextlabel->setText((QString(QString::fromLocal8Bit("훌륭하군! 내 레포트를 찾아준 보답으로 육일콜 번호를 주도록 하지,\n 아 그리고 밖에 나갈거면 학생증이 필요할거야. 나는 없는데 학생증 가지고 있는\n다른 인솔자 방 비밀번호를 알려줄게. ") + QString::number(map->getPasswd()) + QString::fromLocal8Bit("잘 외워 두라고!")).toStdString().c_str()));
         dialogselectlabel[0]->setText(QString::fromLocal8Bit("▶고맙다고 인사한다."));
         dialogselectlabel[1]->setText("");
         currentchoice = 0;
@@ -215,12 +218,12 @@ void Npcdialog::insol2DialogSelect(int index, int choice)
     }
     else if(index==2)
     {
-        //room->storyfinished
+        map->nextstory();
         closeDialog();
     }
     else if(index==3)
     {
-        //room->storyfinished
+        map->nextstory();
         closeDialog();
     }
     else if(index==4)
@@ -389,6 +392,9 @@ void Npcdialog::trapDialog()
     pixmap = new QPixmap(":/images/blacksquare.png");
     dialoglabel->setPixmap(*pixmap);
     delete pixmap;
+    babam = new QMediaPlayer();
+    babam->setMedia(QUrl("qrc:/music/babababa.wma"));
+    babam->play();
     NPCname->setText(QString::fromLocal8Bit("새준위 및 인솔자"));
     dialogtextlabel->setText(QString::fromLocal8Bit("너 이자식 이시간에 왜 돌아다니는거야!"));
     dialogselectlabel[0]->setText(QString::fromLocal8Bit("▶방으로 강제송환"));
@@ -398,6 +404,8 @@ void Npcdialog::trapDialog()
 
 void Npcdialog::trapDialogSelect()
 {
+    babam->stop();
+    delete babam;
     emit reset();
     closeDialog();
 }
@@ -494,6 +502,10 @@ void Npcdialog::passwdDialogSelect(int choice)
                     emptyDialog();
                     break;
                 }
+            }
+            else
+            {
+                closeDialog();
             }
         }
     }
@@ -622,20 +634,6 @@ void Npcdialog::keyPressEvent(QKeyEvent *event)
     {
         switch(event->key())
         {
-        case Qt::Key_Escape:
-        {
-            if(room->getroomtype()==TRAP || room->getroomtype()==INSOL3)
-            {
-               //Reset when character entered to junwis' room
-               closeDialog();
-               emit reset();
-            }
-            else
-            {
-                closeDialog();
-            }
-            break;
-        }
         case Qt::Key_Down:
             dialogselectlabel[currentchoice]->setText(dialogselectlabel[currentchoice]->text().remove(0,1));
             currentchoice = (currentchoice + 1) % nselect;

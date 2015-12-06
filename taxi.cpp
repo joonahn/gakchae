@@ -23,6 +23,7 @@ Taxi::Taxi(QGraphicsScene * _scene)
     scene->addItem(light);
     taxistop=1;
     up_down=2;
+    this->setFocus();
 }
 
 void Taxi::keyPressEvent(QKeyEvent *event)
@@ -39,13 +40,9 @@ void Taxi::keyPressEvent(QKeyEvent *event)
             game->money->starttimer();
             game->taxi_distance->starttimer();
             game->timer->start(2000);
+            game->music->play();
             judge++;
         }
-        if(game->music->state()==QMediaPlayer::StoppedState)
-        {
-            game->music->play();
-        }
-
 
         jumpsound->play();
         QTimer *timer = new QTimer();
@@ -117,9 +114,16 @@ void Taxi::moveend()
         game->stop_all();
         musicend->play();
         ending = new Gamescene(4);
+        connect(ending,SIGNAL(theend()),this,SLOT(theend()));
         scene->addItem(ending);
         ending->setFlag(QGraphicsItem::ItemIsFocusable);
         ending->setFocus();
     }
+}
+
+void Taxi::theend()
+{
+    delete ending;
+    emit endingsignal();
 }
 
